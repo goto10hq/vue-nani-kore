@@ -1,7 +1,7 @@
 <template>
-    <label class="switch">
+    <label class="nk-switch">
         <input :id="id" :class="className" type="checkbox" @change="onChange" :checked="state" :name="name" :disabled="disabled">                       
-        <span><slot></slot></span>
+        <label :for="id"><slot></slot></label>
     </label>
 </template>
 
@@ -106,11 +106,11 @@
 </script>
 
 <style lang="scss">
-    label.switch {
+    label.nk-switch {
         input[type="checkbox"] {
             display: none;             
             &:checked {
-                + span {
+                + label {
                     &:before {
                         background-color: rgba(#007FEB, 0.5);
                     }
@@ -121,7 +121,7 @@
                 }
             }
              &:disabled {
-                + span {                    
+                + label {                    
                     color: rgba(0, 0, 0, 0.2);
                 
                     &:before {
@@ -133,7 +133,7 @@
                     }
                 }
             }
-            + span {                
+            + label {                
                 position: relative;
                 display: inline-block;
                 cursor: pointer;
@@ -168,7 +168,7 @@
                     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .14), 0 2px 2px 0 rgba(0, 0, 0, .098), 0 1px 5px 0 rgba(0, 0, 0, .084);
                 }                           
             }
-            &:checked + span &:after {
+            &:checked + label &:after {
                 transform: translate(80%, -50%);
             }          
         }            

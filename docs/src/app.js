@@ -12,6 +12,9 @@ new Vue({
             checkboxSwitch: {
                 smart: false,            
                 food: ['orange']
+            },
+            checkbox: {
+                sure: false
             }
         }
     },
