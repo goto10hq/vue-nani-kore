@@ -7,7 +7,7 @@
 
 ## Working samples
 
-[![demo](https://goto10hq.github.io/vue-nani-kore/)](https://goto10hq.github.io/vue-nani-kore/)
+[https://goto10hq.github.io/vue-nani-kore/](https://goto10hq.github.io/vue-nani-kore/)
 
 ## Usage
 
