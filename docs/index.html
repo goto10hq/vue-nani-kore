@@ -50,6 +50,23 @@
     <pre v-highlightjs><code class="html">
 &lt;checkbox-switch v-model=&#34;checkboxSwitch.disabler&#34;&gt;&#10;    Disable the last one!&#10;&lt;/checkbox-switch&gt;                &#10;&lt;checkbox-switch v-model=&#34;checkboxSwitch.food&#34; value=&#34;banana&#34;&gt;&#10;    Banana?&#10;&lt;/checkbox-switch&gt;         &#10;&lt;checkbox-switch v-model=&#34;checkboxSwitch.food&#34; value=&#34;orange&#34;&gt;&#10;    Orange?&#10;&lt;/checkbox-switch&gt;         &#10;&lt;checkbox-switch :disabled=&#34;checkboxSwitch.disabler&#34; v-model=&#34;checkboxSwitch.lastOne&#34; checked&gt;&#10;    {{ checkboxSwitch.disabler ? 'I\'m disabled :(' : 'I\'m alive!' }}&#10;&lt;/checkbox-switch&gt;         
     </code></pre>
+
+    <h2>Radio</h2>
+
+    <div>
+<radio v-model="radio.question" name="question" value="One">1</radio>
+<radio v-model="radio.question" name="question" value="Two">2</radio>
+<radio v-model="radio.question" name="question" value="Three">3</radio>
+<radio v-model="radio.question" name="question" value="Four" disabled>4 (disabled)</radio>
+    </div>    
+    <div>
+        <p>
+            <strong>Value:</strong> {{ radio.question }}
+        </p>
+    </div>
+    <pre v-highlightjs><code class="html">
+&lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;One&#34;&gt;1&lt;/radio&gt;&#10;&lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;Two&#34;&gt;2&lt;/radio&gt;&#10;&lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;Three&#34;&gt;3&lt;/radio&gt;&#10;&lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;Four&#34; disabled&gt;4 (disabled)&lt;/radio&gt;    
+    </code></pre>
 </div>
 <script src="build/app.js"></script>
 </body>

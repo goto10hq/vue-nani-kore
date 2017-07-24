@@ -1,6 +1,6 @@
 <template>
-    <div class="nk-checkbox">
-        <input type="checkbox"
+    <div class="nk-radio">
+        <input type="radio"
                :id="id"
                :name="name"
                :value="value"
@@ -28,7 +28,7 @@
             id: {
                 type: String,
                 default: function () {
-                    return 'checkbox-id-' + this._uid;
+                    return 'radio-id-' + this._uid;
                 },
             },
             name: {
@@ -37,10 +37,10 @@
             },
             value: {
                 type: String,
-                default: null,
+                default: '',
             },
             modelValue: {
-                type: String | Array,
+                type: String,
                 default: undefined,
             },
             className: {
@@ -68,11 +68,7 @@
                     return this.checked;
                 }
 
-                if (Array.isArray(this.modelValue)) {
-                    return this.modelValue.indexOf(this.value) > -1;
-                }
-
-                return !!this.modelValue;
+                return this.modelValue === this.value;
             }
         },
 
@@ -82,21 +78,7 @@
             },
 
             toggle() {
-                let value;
-
-                if (Array.isArray(this.modelValue)) {
-                    value = this.modelValue.slice(0);
-
-                    if (this.state) {
-                        value.splice(value.indexOf(this.value), 1);
-                    } else {
-                        value.push(this.value);
-                    }
-                } else {
-                    value = !this.state;
-                }
-
-                this.$emit('input', value);
+                this.$emit('input', this.state ? '' : this.value);
             }
         },
 
@@ -113,35 +95,22 @@
                 this.toggle();
             }
         },
-    };
+    }
 </script>
 
 <style lang="scss">
 
-    $nk-checkbox-size: 20px;
+    $nk-radio-size: 20px;
     $nk-main-color: #007FEB;
 
-   .nk-checkbox {
-       >input[type="checkbox"] {
+   .nk-radio {
+       >input[type="radio"] {
             display: none;             
         
             &:checked {
                 + label {
                     span {
-                        background-color: $nk-main-color;
-                        //transform: scale(1.25); // enlarge the box
-                    
-                        &:after {
-                            width: 10px;
-                            background: #FFF;
-                            transition: width 150ms ease 100ms; // enlarge the tick
-                        }
-                    
-                        &:before {
-                            width: 5px;
-                            background: #FFF;
-                            transition: width 150ms ease 100ms; // enlarge the tick
-                        }                        
+                        background-color: $nk-main-color;                               
                     }                        
                 }            
             }
@@ -157,7 +126,7 @@
             }
         } 
 
-        >label {
+        > label {
             display: inline-block;         
             cursor: pointer;
             position: relative;          
@@ -166,55 +135,54 @@
                 display: inline-block;
                 position: relative;
                 background-color: transparent;
-                width: $nk-checkbox-size;
-                height: $nk-checkbox-size;
+                width: $nk-radio-size;
+                height: $nk-radio-size;
                 transform-origin: center;
                 border: 2px solid $nk-main-color;
-                border-radius: 24%;
-                
+                border-radius: 50%;
                 vertical-align: -5px;
-                margin-right: 6px;
-                transition: background-color 50ms 100ms, transform 350ms cubic-bezier(.78,-1.22,.17,1.89); 
+                margin-right: 6px;                
 
                 &:before {
                     content: "";
-                    width: 0px;
-                    height: 2px;
-                    border-radius: 2px;                 
-                    background: #fff;
-                    position: absolute;
-                    transform: rotate(45deg);                                
-                    top: 8px; 
-                    left: 5px; 
-                    transition: width 50ms ease 50ms;
-                    transform-origin: 0% 0%;                
+                    width: 5px;
+                    height: 5px;                    
+                    background: #FFF;
+                    position: absolute;                    
+                    top: 5px; 
+                    left: 6px; 
+                    border: 0px solid #FFF;
+                    transition: border-width 50ms ease;
+                    transform-origin: center;
+                    border-radius: 50%;
+                                                        
                 }
 
                 &:after {
                     content: "";
-                    width: 0; 
-                    height: 2px;
-                    border-radius: 2px; 
-                    background: #fff;
-                    position: absolute;
-                    transform: rotate(305deg);                
-                    top: 12px; 
-                    left: 6px; 
-                    transition: width 50ms ease;
-                    transform-origin: 0% 0%;
+                    width: 5px;
+                    height: 5px;                    
+                    background: #FFF;
+                    position: absolute;                    
+                    top: 5px; 
+                    left: 5px; 
+                    border: 3px solid #FFF;
+                    transition: border-width 50ms ease;
+                    transform-origin: center;
+                    border-radius: 50%;                      
                 }    
                 
                 &:disabled {                          
                     border-color: rgba(0, 0, 0, 0.2);            
                     background-color: rgba(0, 0, 0, 0.2);                
-                    color: rgba(0, 0, 0, 0.2);                    
+                    color: rgba(0, 0, 0, 0.2);                
                 }
             }
             
             &:disabled {                          
                     border-color: rgba(0, 0, 0, 0.2);            
                     background-color: rgba(0, 0, 0, 0.2);                
-                    color: rgba(0, 0, 0, 0.2);                             
+                    color: rgba(0, 0, 0, 0.2);                    
                 }
         }      
     }

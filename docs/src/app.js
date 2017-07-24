@@ -20,6 +20,9 @@ new Vue({
             },
             checkbox: {
                 sure: false
+            },
+            radio: {
+                question: null
             }
         }
     }    
