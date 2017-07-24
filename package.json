@@ -1,6 +1,6 @@
 {
   "name": "vue-nani-kore",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A bucket of funky components for Vue.js",
   "keywords": [
     "vue"
@@ -18,11 +18,11 @@
     "email": "frohikey@gmail.com",
     "url": "http://www.frohikey.com"
   },
-  "repository": "goto10hq/VueNaniKore",
+  "repository": "goto10hq/vue-nani-kore",
   "bugs": {
-    "url": "https://github.com/goto10hq/VueNaniKore/issues"
+    "url": "https://github.com/goto10hq/vue-nani-kore/issues"
   },
-  "homepage": "https://github.com/goto10hq/VueNaniKore/blob/master/README.md",
+  "homepage": "https://github.com/goto10hq/vue-nani-kore/#readme",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.25.0",
