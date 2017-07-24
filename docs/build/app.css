@@ -1,18 +1,1 @@
-*,
-*:after,
-*:before {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  position: relative; }
-
-body {
-  background-color: #eee;
-  color: #333; }
-
-.page {
-  background-color: #fff;
-  margin: 0 auto;
-  padding: 1em 1.5em;
-  width: 100%;
-  max-width: 900px; }
+*,:after,:before{box-sizing:border-box;margin:0;padding:0;position:relative}body{background-color:#eee;color:#333}.page{background-color:#fff;margin:0 auto;padding:1em 1.5em;width:100%;max-width:900px}

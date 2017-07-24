@@ -10,8 +10,9 @@ new Vue({
     data() {
         return {
             checkboxSwitch: {
-                smart: false,            
-                food: ['orange']
+                disabler: false,            
+                food: ['orange'],
+                lastOne: true
             },
             checkbox: {
                 sure: false

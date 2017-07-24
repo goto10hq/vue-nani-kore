@@ -118,6 +118,9 @@
 
 <style lang="scss">
 
+    $nk-checkbox-size: 20px;
+    $nk-main-color: #007FEB;
+
    .nk-checkbox {
        >input[type="checkbox"] {
             display: none;             
@@ -125,107 +128,112 @@
             &:checked {
                 + label {
                     span {
-                        background-color: #fff;
-                        transform: scale(1.25); // enlarge the box
+                        background-color: $nk-main-color;
+                        //transform: scale(1.25); // enlarge the box
                     
                         &:after {
                             width: 10px;
-                            background: #1790b5;
+                            background: #FFF;
                             transition: width 150ms ease 100ms; // enlarge the tick
                         }
                     
                         &:before {
                             width: 5px;
-                            background: #1790b5;
+                            background: FFF;
                             transition: width 150ms ease 100ms; // enlarge the tick
-                        }
-                    }
-            
-                &:hover { 
+                        }                        
+                    }                        
+                }            
+            }
+
+            &:disabled { 
+                + label {    
                     span {
-                        background-color: #fff;
-                        transform: scale(1.25); // enlarge the box
-
-                        &:after {
-                            width: 10px;
-                            background: #1790b5;
-                            transition: width 150ms ease 100ms; // enlarge the tick
-                        }
-
-                        &:before {
-                            width: 5px;
-                            background: #1790b5;
-                            transition: width 150ms ease 100ms; // enlarge the tick
-                        }
-                    }  
-                }                 
+                        background-color: rgba(0, 0, 0, 0.2);  
+                        border-color: rgba(0, 0, 0, 0.2);  
+                    }                
+                    color: rgba(0, 0, 0, 0.2);  
+                }                                             
             }
-        }
-    } 
+        } 
 
-    > label {
-        display: inline-block; 
-        //color: #fff;
-        cursor: pointer;
-        position: relative; 
+        > label {
+            display: inline-block;         
+            cursor: pointer;
+            position: relative;          
 
-        span {
-            display: inline-block;
-            position: relative;
-            background-color: transparent;
-            width: 20px;
-            height: 20px;
-            transform-origin: center;
-            border: 2px solid rgba(0, 0, 0, 0.2);
-            border-radius: 50%;
-            vertical-align: -6px;
-            margin-right: 10px;
-            transition: background-color 150ms 200ms, transform 350ms cubic-bezier(.78,-1.22,.17,1.89); 
-
-            &:before {
-                content: "";
-                width: 0px;
-                height: 2px;
-                border-radius: 2px; 
-                background: #fff;
-                position: absolute;
-                transform: rotate(45deg);
-                top: 13px; 
-                left: 9px; 
-                transition: width 50ms ease 50ms;
-                transform-origin: 0% 0%;
-            }
-
-            &:after {
-                content: "";
-                width: 0;
-                height: 2px;
-                border-radius: 2px; // so that the tick has nice rounded look
-                background: #fff;
-                position: absolute;
-                transform: rotate(305deg);
-                top: 16px; // you'll need to experiment with placement depending on the dimensions you've chosen
-                left: 10px; // you'll need to experiment with placement depending on the dimensions you've chosen
-                transition: width 50ms ease;
-                transform-origin: 0% 0%;
-            }
-        }
-
-
-        &:hover {
             span {
+                display: inline-block;
+                position: relative;
+                background-color: transparent;
+                width: $nk-checkbox-size;
+                height: $nk-checkbox-size;
+                transform-origin: center;
+                border: 2px solid $nk-main-color;
+                border-radius: 50%;
+                vertical-align: -5px;
+                margin-right: 6px;
+                transition: background-color 50ms 100ms, transform 350ms cubic-bezier(.78,-1.22,.17,1.89); 
+
                 &:before {
-                    width: 5px;
-                    transition: width 100ms ease;
+                    content: "";
+                    width: 0px;
+                    height: 2px;
+                    border-radius: 2px;                 
+                    background: #fff;
+                    position: absolute;
+                    transform: rotate(45deg);                                
+                    top: 8px; 
+                    left: 5px; 
+                    transition: width 50ms ease 50ms;
+                    transform-origin: 0% 0%;                
                 }
-                
+
                 &:after {
-                    width: 10px;
-                    transition: width 150ms ease 100ms;
+                    content: "";
+                    width: 0; 
+                    height: 2px;
+                    border-radius: 2px; 
+                    background: #fff;
+                    position: absolute;
+                    transform: rotate(305deg);                
+                    top: 12px; 
+                    left: 6px; 
+                    transition: width 50ms ease;
+                    transform-origin: 0% 0%;
+                }    
+                
+                &:disabled {                          
+                    border-color: rgba(0, 0, 0, 0.2);            
+                    background-color: rgba(0, 0, 0, 0.2);                
+                    color: rgba(0, 0, 0, 0.2);
+
+                    // &:before {
+                    //     background-color: #EEE;
+                    //     transform: translate(80%, -50%);
+                    // }                
+                    // &:after {
+                    //     background-color: #EEE;
+                    //     transform: translate(80%, -50%);
+                    // }                
                 }
             }
-        }
-    }      
-}
+            
+            &:disabled {                          
+                    border-color: rgba(0, 0, 0, 0.2);            
+                    background-color: rgba(0, 0, 0, 0.2);                
+                    color: rgba(0, 0, 0, 0.2);
+
+                    // &:before {
+                    //     background-color: #EEE;
+                    //     transform: translate(80%, -50%);
+                    // }                
+                    // &:after {
+                    //     background-color: #EEE;
+                    //     transform: translate(80%, -50%);
+                    // }                
+                }
+        }      
+    }
 
 </style>

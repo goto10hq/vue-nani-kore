@@ -1,6 +1,6 @@
 <template>
     <label class="nk-switch">
-        <input :id="id" :class="className" type="checkbox" @change="onChange" :checked="state" :name="name" :disabled="disabled">                       
+        <input :id="id" :class="className" type="checkbox" @change="onChange" :checked="state" :name="name" :disabled="disabled">
         <label :for="id"><slot></slot></label>
     </label>
 </template>
@@ -66,7 +66,7 @@
         },
 
         methods: {
-            onChange() {
+            onChange() {                                
                 this.toggle();
             },
 
@@ -122,14 +122,12 @@
             }
              &:disabled {
                 + label {                    
-                    color: rgba(0, 0, 0, 0.2);
-                
+                    color: rgba(0, 0, 0, 0.2);                    
                     &:before {
                         background-color: rgba(0, 0, 0, 0.2);
                     }
                     &:after {
-                        background-color: #EEE;
-                        transform: translate(80%, -50%);
+                        background-color: rgba(0, 0, 0, 0.2);                        
                     }
                 }
             }
