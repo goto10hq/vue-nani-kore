@@ -1,5 +1,5 @@
 # vue-nani-kore
-> A bucket of Vue magnificent VUE components.
+> A bucket of magnificent VUE components.
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Latest Version on NPM](https://img.shields.io/npm/v/vue-nani-kore.svg?style=flat-square)](https://npmjs.com/package/vue-nani-kore)

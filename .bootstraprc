@@ -61,7 +61,7 @@ styles:
   # Core CSS
   scaffolding: true
   type: true
-  code: true
+  code: false
   grid: true
   tables: true
   forms: true

@@ -20,6 +20,12 @@ module.exports = {
                 loader: 'vue-loader',
                 exclude: /node_modules/,
             },
+            { 
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract({
+                    use: 'css-loader?importLoaders=1',
+                }),
+            },
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
