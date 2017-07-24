@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>vue-nani-kore demo</title>
+    <link rel="stylesheet" href="build/app.css">    
+</head>
+
+<body>
+<div id="app" class="page">
+    <h1><a href="https://github.com/goto10hq/VueNaniKore">vue-nani-kore</a></h1>
+
+    <h2>CheckboxSwitch</h2>
+
+    <div class="example">
+        <checkbox-switch v-model="checkboxSwitch.smart">
+            Are you smart?
+        </checkbox-switch>                
+        <checkbox-switch v-model="checkboxSwitch.food" value="banana">
+            Banana?
+        </checkbox-switch>         
+        <checkbox-switch v-model="checkboxSwitch.food" value="orange">
+            Orange?
+        </checkbox-switch>         
+        <checkbox-switch disabled checked>
+            Are you disabled? I am!
+        </checkbox-switch>         
+    </div>    
+    <div class="values">
+        <p>
+            <strong>Values:</strong> {{ checkboxSwitch | json }}
+        </p>
+    </div>        
+    <div class="example-code">
+        <pre>
+            <code>
+&lt;checkbox-switch v-model="checkboxSwitch.smart"&gt;
+    Are you smart?
+&lt;/checkbox-switch&gt;                
+&lt;checkbox-switch v-model="checkboxSwitch.food" value="banana"&gt;
+    Banana?
+&lt;/checkbox-switch&gt;         
+&lt;checkbox-switch v-model="checkboxSwitch.food" value="orange"&gt;
+    Orange?
+&lt;/checkbox-switch&gt;         
+&lt;checkbox-switch disabled checked&gt;
+    Are you disabled? I am!
+&lt;/checkbox-switch&gt; 
+            </code>
+        </pre>
+    </div>
+</div>
+<script src="build/app.js"></script>
+</body>
+</html>

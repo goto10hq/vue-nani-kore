@@ -1,0 +1,111 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+body {
+  background-color: #eee;
+  font-family: -apple-system, BlinkMacSystemFont,
+  "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans",
+  "Droid Sans", "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  padding: 1em;
+  color: #333;
+}
+
+.page {
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 1em 1.5em;
+  width: 100%;
+  max-width: 900px;
+}
+
+h1 {
+  margin: 0 0 30px;
+  border-bottom: solid 1px #999;
+  font-weight: 100;
+  font-size: 48px;
+
+  a {
+    color: #333;
+    text-decoration: none;
+  }
+}
+
+h2 {
+  margin: 20px 0;
+  border-bottom: solid 1px #ccc;
+  font-weight: 100;
+  font-size: 26px;
+}
+
+h3 {
+  margin: 10px 0;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.example {
+  margin: 0 0 30px;
+
+  .example-inputs {
+    .input-wrapper {
+      margin: 10px 0;
+    }
+  }
+
+  .example-code {
+    margin-top: 20px;
+
+    pre {
+      width: 100%;
+      font-size: 14px;
+      overflow: scroll;
+
+      code {
+        padding: 1.5em;
+      }
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    display: flex;
+
+    .example-inputs {
+      width: 32%;
+    }
+
+    .example-code {
+      margin-top: 0;
+      width: 68%;
+    }
+  }
+}
+
+.values {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+footer {
+  margin: 50px 0 0;
+  font-size: 14px;
+  font-weight: lighter;
+  color: #aaa;
+
+  a {
+    color: #aaa;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
