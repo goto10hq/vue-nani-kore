@@ -37,6 +37,10 @@
     "vue": "^2.4.2",
     "vue-loader": "^12.2.2",
     "vue-template-compiler": "^2.4.2",
-    "webpack": "^3.3.0"    
+    "webpack": "^3.3.0",
+    "resolve-url-loader": "^2.1.0",
+    "bootstrap-loader": "^2.1.0",
+    "bootstrap-sass": "^3.3.7",
+    "jquery": "^3.2.1"
   }
 }

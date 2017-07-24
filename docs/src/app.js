@@ -1,4 +1,4 @@
-// Vue
+require('bootstrap-loader');
 import Vue from 'vue';
 import NaniKore from '../../src';
 
