@@ -18,7 +18,10 @@
     "email": "frohikey@gmail.com",
     "url": "http://www.frohikey.com"
   },
-  "repository": "goto10hq/vue-nani-kore",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/goto10hq/vue-nani-kore"
+  },
   "bugs": {
     "url": "https://github.com/goto10hq/vue-nani-kore/issues"
   },
