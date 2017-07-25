@@ -134,7 +134,8 @@
                 font-weight: 500;
                 text-align: left;
                 margin: 0px;
-                padding: 0px 44px;                
+                padding: 0 6px 0 44px;  
+                              
                 &:before,
                 &:after {
                     content: '';
