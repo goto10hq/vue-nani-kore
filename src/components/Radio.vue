@@ -99,6 +99,8 @@
     $nk-main-color: #007FEB;
 
    .nk-radio {
+       display: inline-block;
+
        >input[type="radio"] {
             display: none;             
         
@@ -124,7 +126,8 @@
         > label {
             display: inline-block;         
             cursor: pointer;
-            position: relative;          
+            position: relative;    
+            padding-right: 6px;      
 
             span {
                 display: inline-block;

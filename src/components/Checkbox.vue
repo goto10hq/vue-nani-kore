@@ -122,6 +122,8 @@
     $nk-main-color: #007FEB;
 
    .nk-checkbox {
+       display: inline-block;
+
        >input[type="checkbox"] {
             display: none;             
         
@@ -160,7 +162,8 @@
         >label {
             display: inline-block;         
             cursor: pointer;
-            position: relative;          
+            position: relative;        
+            padding-right: 6px;  
 
             span {
                 display: inline-block;
