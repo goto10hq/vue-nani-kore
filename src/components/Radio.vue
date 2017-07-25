@@ -4,8 +4,7 @@
                :id="id"
                :name="name"
                :value="value"
-               :class="className"
-               :required="required"
+               :class="className"               
                @change="onChange"
                :checked="state"
                :disabled="disabled">
@@ -50,11 +49,7 @@
             checked: {
                 type: Boolean,
                 default: false,
-            },
-            required: {
-                type: Boolean,
-                default: false,
-            },
+            },       
             disabled: {
                 type: Boolean,
                 default: false
