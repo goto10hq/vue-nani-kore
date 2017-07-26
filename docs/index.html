@@ -11,6 +11,52 @@
 <div id="app" class="page">
     <h1><a href="https://github.com/goto10hq/VueNaniKore">vue-nani-kore</a></h1>
 
+    <h2>Alert</h2>
+
+    <alert class-name="alert alert-success">Hello.</alert>
+
+    <div v-if="!alert.closed">
+        <alert type="danger" :closable="true" @close="alert.closed = true" :errors="alert.errors">Errors:<br/></alert>        
+    </div>
+
+    <div v-if="!alert.closed2">
+        <alert type="danger" :closable="true" @close="alert.closed2 = true">Something bad happened.<span slot="close">die</close></alert>
+    </div>
+    
+    <alert v-for="(i, idx) in alert.alerts" :closable="true" type="info" :duration="3000" :key="i.id" @close="alert.alerts.splice(idx, 1)">
+        <span><strong>{{ i.id }}</strong> - this alert will auto dismiss after 3s.</span>            
+    </alert>
+
+    <div class="form-group">
+        <button type="button" @click="addAlert" class="btn btn-primary">Add alert with duration</button>
+    </div>
+
+    <div>
+        <p>
+            <strong>Value:</strong> {{ alert }}
+        </p>
+    </div> 
+
+    <pre v-highlightjs><code class="html">
+&lt;alert class-name="alert alert-success"&gt;Hello.&lt;/alert&gt;
+
+&lt;div v-if="!alert.closed"&gt;
+    &lt;alert type="danger" :closable="true" @close="alert.closed = true" :errors="alert.errors"&gt;Errors:&lt;br/&gt;&lt;/alert&gt;        
+&lt;/div&gt;
+
+&lt;div v-<span>if</span>="!alert.closed2"&gt;
+    &lt;alert type="danger" :closable="true" @close="alert.closed2 = true"&gt;Something bad happened.&lt;span slot="close"&gt;die&lt;/close&gt;&lt;/alert&gt;
+&lt;/div&gt;
+
+&lt;alert v-for="(i, idx) in alert.alerts" :closable="true" type="info" :duration="3000" :key="i.id" @close="alert.alerts.splice(idx, 1)"&gt;
+    &lt;span&gt;&lt;strong&gt;{<span>{</span> i.id }<span>}</span>&lt;/strong&gt; - this alert will auto dismiss after 3s.&lt;/span&gt;            
+&lt;/alert&gt;
+
+&lt;div class="form-group"&gt;
+    &lt;button type="button" @click="addAlert" class="btn btn-primary"&gt;Add alert with duration&lt;/button&gt;
+&lt;/div&gt;
+    </code></pre>
+
     <h2>Checkbox</h2>
 
     <div>
@@ -37,7 +83,10 @@
 </checkbox-switch>         
 <checkbox-switch v-model="checkboxSwitch.food" value="orange">
     Orange?
-</checkbox-switch>         
+</checkbox-switch>     
+<checkbox-switch v-model="checkboxSwitch.food" value="none" class-name="inline-radio">
+    No style? No food!
+</checkbox-switch>     
 <checkbox-switch :disabled="checkboxSwitch.disabler" v-model="checkboxSwitch.lastOne" checked>
     {{ checkboxSwitch.disabler ? 'I\'m disabled :(' : 'I\'m alive!' }}
 </checkbox-switch>         
@@ -48,7 +97,21 @@
         </p>
     </div>        
     <pre v-highlightjs><code class="html">
-&lt;checkbox-switch v-model=&#34;checkboxSwitch.disabler&#34;&gt;&#10;    Disable the last one!&#10;&lt;/checkbox-switch&gt;                &#10;&lt;checkbox-switch v-model=&#34;checkboxSwitch.food&#34; value=&#34;banana&#34;&gt;&#10;    Banana?&#10;&lt;/checkbox-switch&gt;         &#10;&lt;checkbox-switch v-model=&#34;checkboxSwitch.food&#34; value=&#34;orange&#34;&gt;&#10;    Orange?&#10;&lt;/checkbox-switch&gt;         &#10;&lt;checkbox-switch :disabled=&#34;checkboxSwitch.disabler&#34; v-model=&#34;checkboxSwitch.lastOne&#34; checked&gt;&#10;    {<span>{</span> checkboxSwitch.disabler ? 'I\'m disabled :(' : 'I\'m alive!' }<span>}</span> &#10;&lt;/checkbox-switch&gt;         
+&lt;checkbox-switch v-model="checkboxSwitch.disabler"&gt;
+    Disable the last one!
+&lt;/checkbox-switch&gt;                
+&lt;checkbox-switch v-model="checkboxSwitch.food" value="banana"&gt;
+    Banana?
+&lt;/checkbox-switch&gt;         
+&lt;checkbox-switch v-model="checkboxSwitch.food" value="orange"&gt;
+    Orange?
+&lt;/checkbox-switch&gt;     
+&lt;checkbox-switch v-model="checkboxSwitch.food" value="none" class-name="inline-radio"&gt;
+    No style? No food!
+&lt;/checkbox-switch&gt;     
+&lt;checkbox-switch :disabled="checkboxSwitch.disabler" v-model="checkboxSwitch.lastOne" checked&gt;
+    {<span>{</span> checkboxSwitch.disabler ? 'I\'m disabled :(' : 'I\'m alive!' <span>}</span>}
+&lt;/checkbox-switch&gt;            
     </code></pre>
 
     <h2>Radio</h2>
@@ -67,6 +130,7 @@
     <pre v-highlightjs><code class="html">
 &lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;One&#34;&gt;1&lt;/radio&gt;&#10;&lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;Two&#34;&gt;2&lt;/radio&gt;&#10;&lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;Three&#34;&gt;3&lt;/radio&gt;&#10;&lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;Four&#34; disabled&gt;4 (disabled)&lt;/radio&gt;    
     </code></pre>
+    
 </div>
 <script src="build/app.js"></script>
 </body>

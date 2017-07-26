@@ -1,10 +1,9 @@
 <template>
-    <div class="nk-radio">
+    <div :class="className">
         <input type="radio"
                :id="id"
                :name="name"
-               :value="value"
-               :class="className"               
+               :value="value"                              
                @change="onChange"
                :checked="state"
                :disabled="disabled">
@@ -22,7 +21,6 @@
             prop: 'modelValue',
             event: 'input'
         },
-
         props: {
             id: {
                 type: String,
@@ -32,23 +30,23 @@
             },
             name: {
                 type: String,
-                default: null,
+                default: null
             },
             value: {
                 type: String,
-                default: '',
+                default: ''
             },
             modelValue: {
                 type: String,
-                default: undefined,
+                default: undefined
             },
             className: {
                 type: String,
-                default: null,
+                default: 'nk-radio'                
             },
             checked: {
                 type: Boolean,
-                default: false,
+                default: false
             },       
             disabled: {
                 type: Boolean,
@@ -56,7 +54,6 @@
             },
             model: {}
         },
-
         computed: {
             state () {
                 if (this.modelValue === undefined) {
@@ -66,7 +63,6 @@
                 return this.modelValue === this.value;
             }
         },
-
         methods: {
             onChange() {
                 this.toggle();
@@ -76,7 +72,6 @@
                 this.$emit('input', this.state ? '' : this.value);
             }
         },
-
         watch: {
             checked(newValue) {
                 if (newValue !== this.state) {
@@ -84,7 +79,6 @@
                 }
             }
         },
-
         mounted() {
             if (this.checked && !this.state) {
                 this.toggle();

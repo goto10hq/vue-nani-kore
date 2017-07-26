@@ -23,9 +23,20 @@ new Vue({
             },
             radio: {
                 question: null
+            },
+            alert: {
+                closed: false,
+                closed2: false,
+                alerts: [],
+                errors: { "isValid": false, "errors": [ { "key": "email", "value": "Invalid email." }, { "key": "iq", "value": "Too low iq." } ] }
             }
         }
-    }    
+    },    
+    methods: {
+        addAlert () {        
+          this.alert.alerts.push({ id: new Date().getTime() })        
+      }
+    }
 });
 
 // App

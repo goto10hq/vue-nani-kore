@@ -1,11 +1,9 @@
 <template>
-    <div class="nk-checkbox">
+    <div :class="className">
         <input type="checkbox"
                :id="id"
                :name="name"
-               :value="value"
-               :class="className"
-               :required="required"
+               :value="value"                              
                @change="onChange"
                :checked="state"
                :disabled="disabled">
@@ -45,16 +43,12 @@
             },
             className: {
                 type: String,
-                default: null,
+                default: 'nk-checkbox',                
             },
             checked: {
                 type: Boolean,
                 default: false,
-            },
-            required: {
-                type: Boolean,
-                default: false,
-            },
+            },          
             disabled: {
                 type: Boolean,
                 default: false
@@ -121,7 +115,7 @@
     $nk-checkbox-size: 20px;
     $nk-main-color: #007FEB;
 
-   .nk-checkbox {
+   div.nk-checkbox {
        display: inline-block;
 
        >input[type="checkbox"] {

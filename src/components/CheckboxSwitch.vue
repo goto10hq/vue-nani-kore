@@ -1,6 +1,6 @@
 <template>
-    <label class="nk-switch">
-        <input :id="id" :class="className" type="checkbox" @change="onChange" :checked="state" :name="name" :disabled="disabled">
+    <label :class="className">
+        <input :id="id" type="checkbox" @change="onChange" :checked="state" :name="name" :disabled="disabled">
         <label :for="id"><slot></slot></label>
     </label>
 </template>
@@ -33,7 +33,7 @@
             },
             className: {
                 type: String,
-                default: null,
+                default: 'nk-checkbox-switch',
             },
             checked: {
                 type: Boolean,
@@ -102,7 +102,7 @@
 </script>
 
 <style lang="scss">
-    label.nk-switch {
+    label.nk-checkbox-switch {
         input[type="checkbox"] {
             display: none;             
             &:checked {
