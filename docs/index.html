@@ -13,23 +13,27 @@
 
     <h2>Alert</h2>
 
-    <alert class-name="alert alert-success">Hello.</alert>
+<alert class-name="alert alert-success">Hello.</alert>
 
-    <div v-if="!alert.closed">
-        <alert type="danger" :closable="true" @close="alert.closed = true" :errors="alert.errors">Errors:<br/></alert>        
-    </div>
+<!-- not shown -->
+<alert type="danger" :errors="{}"></alert>        
+<alert type="danger"></alert>        
 
-    <div v-if="!alert.closed2">
-        <alert type="danger" :closable="true" @close="alert.closed2 = true">Something bad happened.<span slot="close">die</close></alert>
-    </div>
-    
-    <alert v-for="(i, idx) in alert.alerts" :closable="true" type="info" :duration="3000" :key="i.id" @close="alert.alerts.splice(idx, 1)">
-        <span><strong>{{ i.id }}</strong> - this alert will auto dismiss after 3s.</span>            
-    </alert>
+<div v-if="!alert.closed">
+    <alert type="danger" :closable="true" @close="alert.closed = true" :errors="alert.errors">Errors:<br/></alert>        
+</div>
 
-    <div class="form-group">
-        <button type="button" @click="addAlert" class="btn btn-primary">Add alert with duration</button>
-    </div>
+<div v-if="!alert.closed2">
+    <alert type="danger" :closable="true" @close="alert.closed2 = true">Something bad happened.<span slot="close">die</close></alert>
+</div>
+
+<alert v-for="(i, idx) in alert.alerts" :closable="true" type="info" :duration="3000" :key="i.id" @close="alert.alerts.splice(idx, 1)">
+    <span><strong>{{ i.id }}</strong> - this alert will auto dismiss after 3s.</span>            
+</alert>
+
+<div class="form-group">
+    <button type="button" @click="addAlert" class="btn btn-primary">Add alert with duration</button>
+</div>
 
     <div>
         <p>
@@ -38,23 +42,7 @@
     </div> 
 
     <pre v-highlightjs><code class="html">
-&lt;alert class-name="alert alert-success"&gt;Hello.&lt;/alert&gt;
-
-&lt;div v-if="!alert.closed"&gt;
-    &lt;alert type="danger" :closable="true" @close="alert.closed = true" :errors="alert.errors"&gt;Errors:&lt;br/&gt;&lt;/alert&gt;        
-&lt;/div&gt;
-
-&lt;div v-<span>if</span>="!alert.closed2"&gt;
-    &lt;alert type="danger" :closable="true" @close="alert.closed2 = true"&gt;Something bad happened.&lt;span slot="close"&gt;die&lt;/close&gt;&lt;/alert&gt;
-&lt;/div&gt;
-
-&lt;alert v-for="(i, idx) in alert.alerts" :closable="true" type="info" :duration="3000" :key="i.id" @close="alert.alerts.splice(idx, 1)"&gt;
-    &lt;span&gt;&lt;strong&gt;{<span>{</span> i.id }<span>}</span>&lt;/strong&gt; - this alert will auto dismiss after 3s.&lt;/span&gt;            
-&lt;/alert&gt;
-
-&lt;div class="form-group"&gt;
-    &lt;button type="button" @click="addAlert" class="btn btn-primary"&gt;Add alert with duration&lt;/button&gt;
-&lt;/div&gt;
+&lt;alert class-name=&#34;alert alert-success&#34;&gt;Hello.&lt;/alert&gt;&#10;&#10;&lt;!-- not shown --&gt;&#10;&lt;alert type=&#34;danger&#34; :errors=&#34;{}&#34;&gt;&lt;/alert&gt;        &#10;&lt;alert type=&#34;danger&#34;&gt;&lt;/alert&gt;        &#10;&#10;&lt;div v-if=&#34;!alert.closed&#34;&gt;&#10;    &lt;alert type=&#34;danger&#34; :closable=&#34;true&#34; @close=&#34;alert.closed = true&#34; :errors=&#34;alert.errors&#34;&gt;Errors:&lt;br/&gt;&lt;/alert&gt;        &#10;&lt;/div&gt;&#10;&#10;&lt;div v-if=&#34;!alert.closed2&#34;&gt;&#10;    &lt;alert type=&#34;danger&#34; :closable=&#34;true&#34; @close=&#34;alert.closed2 = true&#34;&gt;Something bad happened.&lt;span slot=&#34;close&#34;&gt;die&lt;/close&gt;&lt;/alert&gt;&#10;&lt;/div&gt;&#10;&#10;&lt;alert v-for=&#34;(i, idx) in alert.alerts&#34; :closable=&#34;true&#34; type=&#34;info&#34; :duration=&#34;3000&#34; :key=&#34;i.id&#34; @close=&#34;alert.alerts.splice(idx, 1)&#34;&gt;&#10;    &lt;span&gt;&lt;strong&gt;{<span>{</span> i.id <span>}</span>}&lt;/strong&gt; - this alert will auto dismiss after 3s.&lt;/span&gt;            &#10;&lt;/alert&gt;&#10;&#10;&lt;div class=&#34;form-group&#34;&gt;&#10;    &lt;button type=&#34;button&#34; @click=&#34;addAlert&#34; class=&#34;btn btn-primary&#34;&gt;Add alert with duration&lt;/button&gt;&#10;&lt;/div&gt;
     </code></pre>
 
     <h2>Checkbox</h2>

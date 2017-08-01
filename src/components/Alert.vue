@@ -1,5 +1,5 @@
 <template>
-  <div role="alert" :class="alertClass" :id="id">
+  <div role="alert" :class="alertClass" :id="id" v-show="isVisible">
     <button type="button" class="close" aria-label="Close" v-if="closable" @click="closeAlert">
       <span aria-hidden="true"><slot name="close">&times;</slot></span>
     </button>    
@@ -46,6 +46,17 @@
                 return this.className;
             }
             return `alert alert-${this.type}`;
+        },
+        isVisible() {
+            if (this.errorMessage != null) {
+                return true;
+            }
+
+            if (this.$slots.default != null && this.$slots.default != '') {
+                return true;
+            }
+
+            return false;
         },
         errorMessage() {               
             if (this.errors == null || this.errors.length == 0) {
