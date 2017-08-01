@@ -9,17 +9,17 @@ bootstrapVersion: 3
 useCustomIconFontPath: false
 
 # Webpack loaders, order matters
-styleLoaders:
+styleLoaders:  
   - style
   - css
-  - sass
+  - sass  
 
 # Extract styles to stand-alone css file
 # Different settings for different environments can be used,
 # It depends on value of NODE_ENV environment variable
 # This param can also be set in webpack config:
-#   entry: 'bootstrap-loader/extractStyles'
-extractStyles: false
+entry: 'bootstrap-loader/extractStyles'
+extractStyles: true
 # env:
 #   development:
 #     extractStyles: false

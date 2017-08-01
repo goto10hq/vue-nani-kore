@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>vue-nani-kore demo</title>
+    <link rel="stylesheet" href="build/demo.css"> 
     <link rel="stylesheet" href="build/app.css">    
 </head>
 
@@ -101,6 +102,27 @@
     {<span>{</span> checkboxSwitch.disabler ? 'I\'m disabled :(' : 'I\'m alive!' <span>}</span>}
 &lt;/checkbox-switch&gt;            
     </code></pre>
+
+    <h2>Notify</h2>
+
+    <alert type="danger">I'm still working on notifications... Not a part of package.</alert>
+
+    <notify
+    container="notification"
+    status="alert-success"
+    :width="300"
+    :closable="true"    
+    :event-bus="bus"
+>
+      <template slot="content" scope="{data}">
+          <div style="width: 100%; word-break: break-all; text-align: left">
+              <h4><b>{{data.title}}</b></h4>
+              <p style="margin: 0">{{data.text}}</p>
+          </div>
+      </template>
+    </notify>
+
+    <button type="button" class="btn btn-primary" @click="notify">What time is it</button>
 
     <h2>Radio</h2>
 

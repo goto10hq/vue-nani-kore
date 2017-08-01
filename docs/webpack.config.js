@@ -1,15 +1,17 @@
 const path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var webpack = require('webpack');
-
 module.exports = {
     context: __dirname,
 
-    entry: './src/app.js',
+    entry: {
+        demo: ['bootstrap-loader'],                
+        app: ['./src/app.js']
+    },
 
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'app.js',
+        filename: '[name].js',
         publicPath: '/',
     },
 
@@ -57,7 +59,10 @@ module.exports = {
     },
 
     plugins: [
-        new ExtractTextPlugin("app.css"),
+        new ExtractTextPlugin({
+            filename: '[name].css',
+            allChunks: true
+        }),
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery"
