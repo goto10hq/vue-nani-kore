@@ -14,12 +14,13 @@
             closable: {
                 type: Boolean,
                 default: false
-            },
-            permanent: {
-                default: false
-            },
+            },            
             close: '',
             content: {},
+            duration: {
+                type: Number,
+                default: 0
+            },
             container: {
                 type: String,
                 default: 'alert'
@@ -40,18 +41,18 @@
         },
         methods: {
             closeNotification() {
+                clearTimeout(this.timeout);
                 this.$emit('close-notification');
             }
-        },
-        created() {
-            if (!this.permanent) {
-                setTimeout(() => {
-                    this.closeNotification();
-                }, 4000)
+        },        
+        mounted () {
+            if (this.duration > 0) {
+                this.timeout = setTimeout(this.closeAlert, this.duration);
             }
-
+        },
+        destroyed () {
+            clearTimeout(this.timeout);
         }
-
     }
 </script>
 <style scoped>

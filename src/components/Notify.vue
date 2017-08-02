@@ -72,13 +72,14 @@
                     status: obj.status || this.status,
                     width: obj.width || this.width
                 };
-                this.list.push(item);
+                this.list.splice(0, 0, item);
+                //this.list.push(item);
             },
             hideMe() {
                 this.list = [];
             },
             hideChild(key) {
-                this.list.splice(key,1);
+                this.list.splice(key, 1);
             },
             // Register eventBus methods.
             registerBusMethods()

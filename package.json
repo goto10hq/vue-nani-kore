@@ -11,7 +11,9 @@
   ],
   "scripts": {
     "build": "webpack -p --color --progress",
-    "docs": "webpack -p --color --progress --config docs/webpack.config.js"
+    "docs": "webpack -p --color --progress --config docs/webpack.config.js",
+    "build-watch": "webpack -p --watch --color --progress",
+    "docs-watch": "webpack -p --watch --color --progress --config docs/webpack.config.js"
   },
   "author": {
     "name": "Joey Frohikey",
