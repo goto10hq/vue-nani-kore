@@ -1,7 +1,8 @@
 <template>
     <transition enter-active-class="animated quick fadeInRight" leave-active-class="animated quick fadeOutRight">
-        <div v-if="show" :class="[container, status, 'alert notify-me']" :style="{ width: width + 'px' }">
-            <slot name="content"></slot>            
+        <div v-if="show" :class="[alertClass, 'notify-me']" :style="{ width: width + 'px' }">
+            <slot name="content"></slot>   
+            {{ duration }}         
             <button type="button" class="close" aria-label="Close" v-if="closable" @click="closeNotification">
                 <span aria-hidden="true"><slot name="close">&times;</slot></span>
             </button>
@@ -19,15 +20,15 @@
             duration: {
                 type: Number,
                 default: 0
-            },
-            container: {
+            },            
+            type: {
                 type: String,
-                default: 'alert'
+                default: 'success'
             },
-            status: {
+            className: {
                 type: String,
-                default: 'alert-success'
-            },
+                default: null
+            },            
             width: {
                 type: Number,
                 default: 350
@@ -38,6 +39,14 @@
                 show:true
             }
         },
+        computed: {
+            alertClass () {
+                if (this.className != null) {
+                    return this.className;
+                }
+                return `alert alert-${this.type}`;
+            },
+        },
         methods: {
             closeNotification() {
                 clearTimeout(this.timeout);
@@ -46,7 +55,7 @@
         },        
         mounted () {
             if (this.duration > 0) {
-                this.timeout = setTimeout(this.closeAlert, this.duration);
+                this.timeout = setTimeout(this.closeNotification, this.duration);
             }
         },
         destroyed () {
@@ -61,7 +70,8 @@
         justify-content: space-between;
         position: relative;
         bottom: 2rem;
-        right: 2rem;
+        /* right: 2rem; */
+        left: 2rem;
         z-index: 9999;
         margin-bottom: 1.5rem;
     }

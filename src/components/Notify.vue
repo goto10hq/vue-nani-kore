@@ -1,18 +1,16 @@
 <template>
     <div class="notification-container">
-        <notification v-for="(item, idx) in list" v-bind:key="item.id"
-                      :permanent="item.permanent"
-                      :container="item.container"
-                      :status="item.status"
-                      :width="item.width"
-                      :close="item.close"
+        <notification v-for="(item, idx) in list" v-bind:key="item.id"                                            
+                      :class-name="item.className"
+                      :width="item.width"                      
                       :content="item.content"
                       :closable="item.closable"
+                      :duration="item.duration"
+                      :type="item.type"
                       @close-notification="hideChild(idx)">
             <template slot="content">
                 <slot name="content" :data="item.content"></slot>
             </template>
-
         </notification>
     </div>
 </template>
@@ -23,18 +21,7 @@
         components: {
             notification: Notification
         },
-        props: {
-            permanent:{
-                default:false
-            },
-            container: {
-                type: String,
-                default: 'notification'
-            },
-            status: {
-                type: String,
-                default: 'is-success'
-            },
+        props: {                      
             width: {
                 type: Number,
                 default: 350
@@ -43,6 +30,18 @@
                 type: Boolean,
                 default: false
             },
+            duration: {
+                type: Number,
+                default: 5000
+            },
+             type: {
+                type: String,
+                default: 'success'
+            },
+            className: {
+                type: String,
+                default: null
+            },      
             // central event bus
             eventBus: {
                 default: null
@@ -63,14 +62,13 @@
         methods: {
             showMe(obj) {
                 const item = {
-                    id: this.list.length,
-                    permanent: obj.permanent || this.permanent,
-                    close: obj.close || this.close,
+                    id: this.list.length,                                        
                     closable: obj.closable || this.closable,
                     content: obj.data,
-                    container: obj.container || this.container,
-                    status: obj.status || this.status,
-                    width: obj.width || this.width
+                    width: obj.width || this.width,
+                    duration: obj.duration || this.duration,
+                    className: obj.className || this.className,
+                    type: obj.type || this.type
                 };
                 this.list.splice(0, 0, item);
                 //this.list.push(item);
@@ -105,7 +103,8 @@
         flex-direction: column-reverse;
         align-items: flex-end;
         position: fixed;
-        right: 0;
+        /* right: 0; */
+        left: 0;
         bottom: 0;
         width: auto;
         height: auto;
