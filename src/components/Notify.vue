@@ -25,7 +25,7 @@
              id: {
                 type: String,
                 default: function () {
-                    return 'alert-id-' + this._uid;
+                    return 'notify-id-' + this._uid;
                 },
             },                
             width: {
@@ -65,13 +65,20 @@
             }
         },
         methods: {
-            showMe(obj) {
+            showMe(obj) {                
+                var d = obj.duration;
+                if (d == undefined) {
+                    d = this.duration;
+                }
+                if (d == undefined) {
+                    d = 5000;
+                }
                 const item = {
-                    id: this.list.length,                                        
+                    id: new Date().getTime(),
                     closable: obj.closable || this.closable,
                     content: obj.data,
                     width: obj.width || this.width,
-                    duration: obj.duration || this.duration,
+                    duration: d,
                     className: obj.className || this.className,
                     type: obj.type || this.type
                 };

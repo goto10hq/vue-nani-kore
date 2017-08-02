@@ -36,10 +36,10 @@ new Vue({
     },    
     methods: {
         addAlert () {        
-          this.alert.alerts.push({ id: new Date().getTime() })        
+            this.alert.alerts.push({ id: new Date().getTime() })        
         },
         notify() {            
-            this.bus.$emit('show-notification', { closable: false, data: { title: null, text: 'Hello, people of the Earth. My cosmic watch shows: ' + new Date().getTime() }})
+            this.bus.$emit('show-notification', { duration: 5000, closable: true, data: { title: 'Important message', text: 'Hello, people of Earth. My cosmic watch shows: ' + new Date().getTime() }})
         }
     }
 });
