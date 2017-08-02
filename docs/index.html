@@ -107,7 +107,7 @@
 
     <alert type="danger">I'm still working on notifications... Not a part of package.</alert>
 
-    <notify type="info" :width="300" :event-bus="bus" :position="notify.position" :duration="0">
+    <notify type="info" :width="300" :event-bus="bus" :position="notify.position" :duration="5000" :method="notify.method">
       <template slot="content" scope="{data}">
           <div>              
             <h4>{{ data.title }}</h4>
@@ -123,6 +123,11 @@
         <radio v-model="notify.position" name="position" value="bottom-left">BOTTOM LEFT</radio>
         <radio v-model="notify.position" name="position" value="bottom-center">BOTTOM CENTER</radio>    
         <radio v-model="notify.position" name="position" value="bottom-right">BOTTOM RIGHT</radio>    
+    </div>
+
+    <div class="form-group">
+        <radio v-model="notify.method" name="method" value="first">FIRST</radio>
+        <radio v-model="notify.method" name="method" value="last">LAST</radio>
     </div>
 
     <button type="button" class="btn btn-primary" @click="notifyMe">What time is it</button>

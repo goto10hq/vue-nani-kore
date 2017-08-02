@@ -4,8 +4,7 @@
             <button type="button" class="close" aria-label="Close" v-if="closable" @click="closeNotification">
                 <span aria-hidden="true"><slot name="close">&times;</slot></span>
             </button>
-            <slot name="content"></slot>     
-            {{ position }}               
+            <slot name="content"></slot>                              
         </div>
     </transition>
 </template>
