@@ -65,7 +65,7 @@ value | `string` | `null` | value
 **Notify**
 
 ```html
-<notify type="info" :width="300" :event-bus="bus" :position="notify.position" :duration="5000" :method="notify.method">
+<notify type="info" :event-bus="bus">
     <template slot="content" scope="{data}">
         <div>              
         <h4>{{ data.title }}</h4>
