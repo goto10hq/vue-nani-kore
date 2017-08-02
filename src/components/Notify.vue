@@ -62,9 +62,11 @@
                 default: null
             },
             eventShow: {
+                type: String,
                 default: 'show-notification'
             },
             eventHide: {
+                type: String,
                 default: 'hide-notifications'
             }            
         },
