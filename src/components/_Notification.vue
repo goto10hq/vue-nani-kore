@@ -1,10 +1,11 @@
 <template>
-    <transition enter-active-class="animated quick fadeInRight" leave-active-class="animated quick fadeOutRight">
-        <div v-if="show" :class="[alertClass, 'nk-notify']" :style="{ width: width + 'px' }">
+    <transition :enter-active-class="animationClassIn" :leave-active-class="animationClassOut">
+        <div v-if="show" :class="[ alertClass, 'nk-notify', position ]" :style="{ width: width + 'px' }">
             <button type="button" class="close" aria-label="Close" v-if="closable" @click="closeNotification">
                 <span aria-hidden="true"><slot name="close">&times;</slot></span>
             </button>
-            <slot name="content"></slot>               
+            <slot name="content"></slot>     
+            {{ position }}               
         </div>
     </transition>
 </template>
@@ -31,6 +32,10 @@
             width: {
                 type: Number,
                 default: 350
+            },
+            position: {
+                type: String,
+                default: 'top-center'
             }
         },
         data(){
@@ -40,12 +45,34 @@
             }
         },
         computed: {
-            alertClass () {
+            alertClass() {
                 if (this.className != null) {
                     return this.className;
                 }
                 return `alert alert-${this.type}`;
             },
+            animationClassIn() {
+                let prefix = 'animated quick ';
+                switch(this.position) {
+                    case 'top-center': return prefix + 'fadeInDown';
+                    case 'top-left': return prefix + 'fadeInLeft';
+                    case 'top-right': return prefix + 'fadeInRight';
+                    case 'bottom-left': return prefix + 'fadeInLeft';
+                    case 'bottom-center': return prefix + 'fadeInUp';
+                    case 'bottom-right': return prefix + 'fadeInRight';
+                }
+            },
+            animationClassOut() {
+                let prefix = 'animated quick ';
+                switch(this.position) {
+                    case 'top-center': return prefix + 'fadeOutDown';
+                    case 'top-left': return prefix + 'fadeOutLeft';
+                    case 'top-right': return prefix + 'fadeOutRight';
+                    case 'bottom-left': return prefix + 'fadeOutLeft';
+                    case 'bottom-center': return prefix + 'fadeOutUp';
+                    case 'bottom-right': return prefix + 'fadeInRight';
+                }
+            }
         },
         methods: {
             closeNotification() {                                
@@ -65,18 +92,46 @@
 </script>
 <style lang="scss">
     .nk-notify {
-        //display: flex;
-        //align-items: center;
-        //justify-content: space-between;
         position: relative;
-        bottom: 2rem;
-        /* right: 2rem; */
-        left: 2rem;
-        z-index: 9999;
-        margin-bottom: 1.5rem;
+        z-index: 9999;        
+        
+        &.alert {
+            margin-bottom: 2px;
+        }
 
         .close {            
             z-index: 2;
+        }
+
+        &.top-right {
+            margin-top: 0;
+            top: 2px;
+            right: 5px;
+        }
+
+        &.top-center {
+            margin-top: 0;
+            top: 2px;
+        }
+
+        &.top-left {
+            margin-top: 0;
+            top: 2px;
+            left: 5px;
+        }
+
+         &.bottom-right {            
+            bottom: 2px;
+            right: 5px;
+        }
+
+        &.bottom-center {                  
+            bottom: 2px;
+        }
+
+        &.bottom-left {            
+            bottom: 2px;
+            left: 5px;
         }
     }   
 </style>

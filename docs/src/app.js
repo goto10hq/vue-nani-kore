@@ -31,15 +31,18 @@ new Vue({
                 alerts: [],
                 errors: { "isValid": false, "errors": [ { "key": "email", "value": "Invalid email." }, { "key": "iq", "value": "Too low iq." } ] }
             },
-            bus: bus
+            bus: bus,
+            notify: {
+                position: 'top-center'
+            }
         }
     },    
     methods: {
         addAlert () {        
             this.alert.alerts.push({ id: new Date().getTime() })        
         },
-        notify() {            
-            this.bus.$emit('show-notification', { duration: 5000, closable: true, data: { title: 'Important message', text: 'Hello, people of Earth. My cosmic watch shows: ' + new Date().getTime() }})
+        notifyMe() {            
+            this.bus.$emit('show-notification', { closable: true, data: { title: 'Important message', text: 'Hello, people of Earth. My cosmic watch shows: ' + new Date().getTime() }})
         }
     }
 });
