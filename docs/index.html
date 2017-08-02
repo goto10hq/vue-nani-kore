@@ -107,17 +107,11 @@
 
     <alert type="danger">I'm still working on notifications... Not a part of package.</alert>
 
-    <notify
-    container="notification"
-    status="alert-success"
-    :width="300"
-    :closable="true"    
-    :event-bus="bus"
->
+    <notify status="alert-success" :width="300" :event-bus="bus">
       <template slot="content" scope="{data}">
-          <div style="width: 100%; word-break: break-all; text-align: left">
-              <h4><b>{{data.title}}</b></h4>
-              <p style="margin: 0">{{data.text}}</p>
+          <div>
+              <h4>{{data.title}}</h4>
+              <p>{{data.text}}</p>
           </div>
       </template>
     </notify>

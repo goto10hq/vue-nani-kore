@@ -1,5 +1,5 @@
 <template>
-    <div class="notification-container">
+    <div class="nk-notification-container" :id="id">
         <notification v-for="(item, idx) in list" v-bind:key="item.id"                                            
                       :class-name="item.className"
                       :width="item.width"                      
@@ -21,7 +21,13 @@
         components: {
             notification: Notification
         },
-        props: {                      
+        props: {      
+             id: {
+                type: String,
+                default: function () {
+                    return 'alert-id-' + this._uid;
+                },
+            },                
             width: {
                 type: Number,
                 default: 350
@@ -34,7 +40,7 @@
                 type: Number,
                 default: 5000
             },
-             type: {
+            type: {
                 type: String,
                 default: 'success'
             },
@@ -47,14 +53,13 @@
                 default: null
             },
             eventShow: {
-                default: 'notify-me'
+                default: 'show-notification'
             },
             eventHide: {
                 default: 'close-notification'
-            },
-
+            }
         },
-        data(){
+        data() {
             return {
                 list: []
             }
@@ -80,15 +85,13 @@
                 this.list.splice(key, 1);
             },
             // Register eventBus methods.
-            registerBusMethods()
-            {
+            registerBusMethods() {
                 const bus = this.eventBus || ((this.$parent) ? this.$parent.bus || this.$parent : null);
 
                 if (bus) {
                     bus.$on(this.eventShow, this.showMe);
                     bus.$on(this.eventHide, this.hideMe);
                 }
-
             }
         },
         created() {
@@ -98,7 +101,7 @@
     }
 </script>
 <style scoped>
-    .notification-container {
+    .nk-notification-container {
         display: flex;
         flex-direction: column-reverse;
         align-items: flex-end;

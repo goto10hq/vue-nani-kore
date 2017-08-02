@@ -1,11 +1,11 @@
 <template>
     <transition enter-active-class="animated quick fadeInRight" leave-active-class="animated quick fadeOutRight">
-        <div v-if="show" :class="[alertClass, 'notify-me']" :style="{ width: width + 'px' }">
-            <slot name="content"></slot>   
-            {{ duration }}         
+        <div v-if="show" :class="[alertClass, 'nk-notify-me']" :style="{ width: width + 'px' }">
             <button type="button" class="close" aria-label="Close" v-if="closable" @click="closeNotification">
                 <span aria-hidden="true"><slot name="close">&times;</slot></span>
             </button>
+            <slot name="content"></slot>   
+            {{ closable }}                        
         </div>
     </transition>
 </template>
@@ -64,7 +64,7 @@
     }
 </script>
 <style scoped>
-    .notify-me {
+    .nk-notify {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -74,14 +74,5 @@
         left: 2rem;
         z-index: 9999;
         margin-bottom: 1.5rem;
-    }
-
-    .notify-me i {
-        cursor: pointer;
-        align-self: flex-start;
-    }
-
-    .notify-me:first-child {
-        margin-bottom: 0;
-    }
+    }   
 </style>

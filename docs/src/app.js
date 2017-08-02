@@ -39,7 +39,7 @@ new Vue({
           this.alert.alerts.push({ id: new Date().getTime() })        
         },
         notify() {            
-            this.bus.$emit('notify-me', { data: { title: 'Current time', text: new Date().getTime() }})
+            this.bus.$emit('show-notification', { closable: false, data: { title: null, text: 'Hello, people of the Earth. My cosmic watch shows: ' + new Date().getTime() }})
         }
     }
 });
