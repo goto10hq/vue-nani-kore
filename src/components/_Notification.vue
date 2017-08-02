@@ -14,8 +14,7 @@
             closable: {
                 type: Boolean,
                 default: false
-            },            
-            close: '',
+            },                        
             content: {},
             duration: {
                 type: Number,
