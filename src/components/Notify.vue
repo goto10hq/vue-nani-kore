@@ -58,6 +58,7 @@
                 default: 'first'  
             },
             eventBus: {
+                type: Object,
                 default: null
             },
             eventShow: {
