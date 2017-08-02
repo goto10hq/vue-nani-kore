@@ -14,4 +14,4 @@ export default {
     }
 }
 
-export { CheckboxSwitch, Checkbox, Radio }
+export { CheckboxSwitch, Checkbox, Radio, Alert, Notify }
