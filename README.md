@@ -97,9 +97,11 @@ width | `int` (px) | `350` | width of one notification
 
 Parameter | Type | Default value | Note
 --------- | ---- | ------------- | ----
+border-color | `string` | `null` | border color
 checked | `boolean` | `false` | checked flag
 class-name | `string` | `nk-radio` | css class
 disabled | `boolean` | `false` | disabled flag
+fill-color | `string` | `null` | fill color (checked state)
 id | `string` | `radio-id-{uid}` | id of element
 name | `string` | `null` | name attribute
 v-model | `string` or `array` | `undefined` | model value
