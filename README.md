@@ -38,9 +38,11 @@ Special slot for "closing content": `<span slot="close">#</span>`
 
 Parameter | Type | Default value | Note
 --------- | ---- | ------------- | ----
+border-color | `string` | `null` | border color
 checked | `boolean` | `false` | checked flag
 class-name | `string` | `nk-checkbox` | css class
 disabled | `boolean` | `false` | disabled flag
+fill-color | `string` | `null` | fill color (checked state)
 id | `string` | `checkbox-id-{uid}` | id of element
 name | `string` | `null` | name attribute
 v-model | `string` or `array` | `undefined` | model value
