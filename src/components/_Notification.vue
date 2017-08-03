@@ -69,7 +69,7 @@
                     case 'top-right': return prefix + 'fadeOutRight';
                     case 'bottom-left': return prefix + 'fadeOutLeft';
                     case 'bottom-center': return prefix + 'fadeOutUp';
-                    case 'bottom-right': return prefix + 'fadeInRight';
+                    case 'bottom-right': return prefix + 'fadeOutRight';
                 }
             }
         },
