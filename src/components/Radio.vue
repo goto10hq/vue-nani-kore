@@ -8,9 +8,9 @@
                :checked="state"
                :disabled="disabled">
         <label :for="id">
-            <span>                
+            <span :style="spanStyle">                
             </span>
-            <slot></slot>
+            <slot></slot>        
         </label>
     </div>
 </template>
@@ -52,15 +52,36 @@
                 type: Boolean,
                 default: false
             },
+            borderColor: {
+                type: String,
+                default: null
+            },
+            fillColor: {
+                type: String,
+                default: null
+            },            
             model: {}
         },
         computed: {
-            state () {
+            state() {
                 if (this.modelValue === undefined) {
                     return this.checked;
                 }
 
                 return this.modelValue === this.value;
+            },           
+            spanStyle() {
+                let basic = null;
+
+                if (this.borderColor != null && !this.disabled) {
+                    basic = 'border-color: ' + this.borderColor + '; ';
+                }
+
+                if (this.fillColor == null || !this.state || this.disabled) {                    
+                    return basic;
+                }
+                                
+                return (basic || '') + 'background-color: ' + this.fillColor + '; ';
             }
         },
         methods: {
@@ -91,6 +112,7 @@
 
     $nk-radio-size: 20px;
     $nk-main-color: #007FEB;
+    $nk-disabled-color: rgba(0, 0, 0, 0.2);
 
    .nk-radio {
        display: inline-block;
@@ -109,10 +131,10 @@
             &:disabled { 
                 + label {    
                     span {
-                        background-color: rgba(0, 0, 0, 0.2);  
-                        border-color: rgba(0, 0, 0, 0.2);  
+                        background-color: $nk-disabled-color;
+                        border-color: $nk-disabled-color;
                     }                
-                    color: rgba(0, 0, 0, 0.2);  
+                    color: $nk-disabled-color;
                 }                                             
             }
         } 
@@ -165,16 +187,16 @@
                 }    
                 
                 &:disabled {                          
-                    border-color: rgba(0, 0, 0, 0.2);            
-                    background-color: rgba(0, 0, 0, 0.2);                
-                    color: rgba(0, 0, 0, 0.2);                
+                    border-color: $nk-disabled-color;
+                    background-color: $nk-disabled-color;
+                    color: $nk-disabled-color;     
                 }
             }
             
             &:disabled {                          
-                    border-color: rgba(0, 0, 0, 0.2);            
-                    background-color: rgba(0, 0, 0, 0.2);                
-                    color: rgba(0, 0, 0, 0.2);                    
+                    border-color: $nk-disabled-color;
+                    background-color: $nk-disabled-color;
+                    color: $nk-disabled-color;
                 }
         }      
     }
