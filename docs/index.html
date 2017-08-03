@@ -172,6 +172,18 @@ notifyMe() {
 &lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;One&#34;&gt;1&lt;/radio&gt;&#10;&lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;Two&#34;&gt;2&lt;/radio&gt;&#10;&lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;Three&#34; border-color=&#34;#52395e&#34; fill-color=&#34;#c17dd1&#34;&gt;3&lt;/radio&gt;&#10;&lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;Four&#34; border-color=&#34;#52395e&#34; fill-color=&#34;#c17dd1&#34; disabled&gt;4 (disabled)&lt;/radio&gt;
     </code></pre>
     
+    <h2>Uploader</h2>    
+
+    <div class="text-danger">THIS IS WORK IN PROGRESS. NOT A PART OF OFFICIAL BUNDLE YET.</div>
+    
+    <uploader url='https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart' :files="[ { file: 'a.jpg' }, { file: 'b.jpg' }]">
+        <template slot="content" scope="{data}">
+            <div class="thumbnail">
+                <img :src="'blob/' + data.file" class="img-responsive img-rounded" :alt="data.file">                
+                <a href="#" class="btn btn-xs btn-danger" v-on:click.prevent="">Delete</a>                
+            </div>
+        </template>
+    </uploader>
 </div>
 <script src="build/app.js"></script>
 </body>

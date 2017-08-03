@@ -3,6 +3,7 @@ import Checkbox from './components/Checkbox';
 import Radio from './components/Radio';
 import Alert from './components/Alert';
 import Notify from './components/Notify';
+import Uploader from './components/Uploader';
 
 export default {
     install (Vue) {        
@@ -11,7 +12,8 @@ export default {
         Vue.component('radio', Radio);
         Vue.component('alert', Alert);
         Vue.component('notify', Notify);
+        Vue.component('uploader', Uploader);
     }
 }
 
-export { CheckboxSwitch, Checkbox, Radio, Alert, Notify }
+export { CheckboxSwitch, Checkbox, Radio, Alert, Notify, Uploader }
