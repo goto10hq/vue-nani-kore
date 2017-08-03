@@ -35,7 +35,7 @@ new Vue({
             bus: bus,
             notify: {
                 method: 'first',
-                position: 'top-center'
+                position: 'top-right'
             }
         }
     },    
