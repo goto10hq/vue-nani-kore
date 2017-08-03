@@ -8,9 +8,9 @@
                :checked="state"
                :disabled="disabled">
         <label :for="id">
-            <span>                
+           <span :style="spanStyle">                
             </span>
-            <slot></slot>
+            <slot></slot>            
         </label>
     </div>
 </template>
@@ -48,7 +48,15 @@
             checked: {
                 type: Boolean,
                 default: false,
-            },          
+            },                   
+            borderColor: {
+                type: String,
+                default: null
+            },
+            fillColor: {
+                type: String,
+                default: null
+            },   
             disabled: {
                 type: Boolean,
                 default: false
@@ -67,6 +75,19 @@
                 }
 
                 return !!this.modelValue;
+            },
+            spanStyle() {
+                let basic = '';
+
+                if (this.borderColor != null && !this.disabled) {
+                    basic += 'border-color: ' + this.borderColor + '; ';
+                }               
+
+                if (this.fillColor == null || !this.state || this.disabled) {                    
+                    return basic;
+                }
+                                
+                return (basic || '') + 'background-color: ' + this.fillColor + '; ';
             }
         },
 
@@ -114,6 +135,8 @@
 
     $nk-checkbox-size: 20px;
     $nk-main-color: #007FEB;
+    $nk-disabled-color: rgba(0, 0, 0, 0.2);
+    $nk-line-color: #FFF;
 
    div.nk-checkbox {
        display: inline-block;
@@ -129,14 +152,14 @@
                     
                         &:after {
                             width: 10px;
-                            background: #FFF;
-                            transition: width 150ms ease 100ms; // enlarge the tick
+                            //background-color: $nk-line-color;
+                            transition: width 150ms ease 100ms;
                         }
                     
                         &:before {
                             width: 5px;
-                            background: #FFF;
-                            transition: width 150ms ease 100ms; // enlarge the tick
+                            //background-color: $nk-line-color;
+                            transition: width 150ms ease 100ms;
                         }                        
                     }                        
                 }            
@@ -145,10 +168,10 @@
             &:disabled { 
                 + label {    
                     span {
-                        background-color: rgba(0, 0, 0, 0.2);  
-                        border-color: rgba(0, 0, 0, 0.2);  
+                        background-color: $nk-disabled-color;  
+                        border-color: $nk-disabled-color;  
                     }                
-                    color: rgba(0, 0, 0, 0.2);  
+                    color: $nk-disabled-color;  
                 }                                             
             }
         } 
@@ -161,24 +184,23 @@
 
             span {
                 display: inline-block;
-                position: relative;
-                background-color: transparent;
+                position: relative;                
                 width: $nk-checkbox-size;
                 height: $nk-checkbox-size;
                 transform-origin: center;
                 border: 2px solid $nk-main-color;
-                border-radius: 24%;
-                
+                border-radius: 24%;            
                 vertical-align: -5px;
                 margin-right: 6px;
-                transition: background-color 50ms 100ms, transform 350ms cubic-bezier(.78,-1.22,.17,1.89); 
+                background-color: transparent;
+                transition: background-color 50ms 100ms, transform 350ms cubic-bezier(.78,-1.22,.17,1.89);                 
 
                 &:before {
                     content: "";
                     width: 0px;
                     height: 2px;
                     border-radius: 2px;                 
-                    background: #fff;
+                    background: $nk-line-color;
                     position: absolute;
                     transform: rotate(45deg);                                
                     top: 8px; 
@@ -192,7 +214,7 @@
                     width: 0; 
                     height: 2px;
                     border-radius: 2px; 
-                    background: #fff;
+                    background: $nk-line-color;
                     position: absolute;
                     transform: rotate(305deg);                
                     top: 12px; 
@@ -202,16 +224,16 @@
                 }    
                 
                 &:disabled {                          
-                    border-color: rgba(0, 0, 0, 0.2);            
-                    background-color: rgba(0, 0, 0, 0.2);                
-                    color: rgba(0, 0, 0, 0.2);                    
+                    border-color: $nk-disabled-color;
+                    background-color: $nk-disabled-color;
+                    color: $nk-disabled-color;
                 }
             }
             
             &:disabled {                          
-                    border-color: rgba(0, 0, 0, 0.2);            
-                    background-color: rgba(0, 0, 0, 0.2);                
-                    color: rgba(0, 0, 0, 0.2);                             
+                    border-color: $nk-disabled-color;
+                    background-color: $nk-disabled-color;
+                    color: $nk-disabled-color;
                 }
         }      
     }

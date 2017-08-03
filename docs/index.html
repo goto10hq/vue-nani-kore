@@ -56,11 +56,12 @@ addAlert () {
 
     <div>
 <checkbox v-model="checkbox.sure">Are you sure?</checkbox>
-<checkbox checked disabled>Am I disabled? I am!</checkbox>
+<checkbox v-model="checkbox.clever" border-color="#52395e" fill-color="#c17dd1" line-color="#f4cbf4">Are you clever?</checkbox> 
+<checkbox checked disabled border-color="#52395e" fill-color="#c17dd1" line-color="#f4cbf4">Am I disabled? I am!</checkbox>
     </div>
     <div>
         <p>
-            <strong>Value:</strong> {{ checkbox.sure }}
+            <strong>Values:</strong> {{ checkbox }}
         </p>
     </div>  
     <pre v-highlightjs><code class="html">

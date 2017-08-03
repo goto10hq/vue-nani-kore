@@ -20,7 +20,8 @@ new Vue({
                 lastOne: true
             },
             checkbox: {
-                sure: false
+                sure: false,
+                clever: true
             },
             radio: {
                 question: null

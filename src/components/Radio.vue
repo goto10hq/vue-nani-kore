@@ -156,6 +156,7 @@
                 border-radius: 50%;
                 vertical-align: -5px;
                 margin-right: 6px;                
+                transition: background-color 50ms 100ms;
 
                 &:before {
                     content: "";
