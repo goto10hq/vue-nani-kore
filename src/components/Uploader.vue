@@ -104,7 +104,8 @@
                             this.on('error',
                                 function (file, message) {
                                     this.removeFile(file);
-                                    self.uploading = false;                                                                    
+                                    self.uploading = false;   
+                                    console.log('error', message);
                                     self.$emit('error', message);                                                                        
                                 });
 

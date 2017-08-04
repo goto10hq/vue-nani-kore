@@ -58,7 +58,12 @@ new Vue({
             }
         },
         uploaderError(errors) {
-            this.uploader.errors.push({ id: new Date().getTime(), errors: errors })                    
+            try {
+                JSON.parse(str);
+                this.uploader.errors.push({ id: new Date().getTime(), errors: errors });
+            } catch (e) {
+                this.uploader.errors.push({ id: new Date().getTime(), errors: { "isValid": false, "errors": [ { "key": "_", "value": errors } ] } });
+            }            
         }
     }
 });
