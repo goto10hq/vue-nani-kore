@@ -4,7 +4,7 @@
       <span aria-hidden="true"><slot name="close">&times;</slot></span>
     </button>    
     <slot></slot>
-    <span v-html="errorMessage"></span>
+    <span v-html="errorMessage"></span>    
   </div>
 </template>
 

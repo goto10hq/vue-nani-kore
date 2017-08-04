@@ -38,7 +38,8 @@ new Vue({
                 position: 'top-right'
             },
             uploader: {
-                files: [{ id: 1, file: 'a.jpg' }, { id: 2, file: 'b.jpg' }]
+                errors: [],
+                files: [{ id: 1, file: 'a.jpg', size: 216000, server: 'blob/' }, { id: 2, file: 'b.jpg', size: 110175, server: 'blob/' }]
             }
         }
     },    
@@ -55,6 +56,9 @@ new Vue({
             if (idx >= 0) {
                 this.uploader.files.splice(idx, 1);
             }
+        },
+        uploaderError(errors) {
+            this.uploader.errors.push({ id: new Date().getTime(), errors: errors })                    
         }
     }
 });

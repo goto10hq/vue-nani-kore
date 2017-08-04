@@ -1,5 +1,5 @@
 <template>
-    <div :class="className">            
+    <div :class="className">                
         <div v-show="maxFiles == 0 || maxFiles > files.length">
             <span class="label label-danger" v-if="errorMessage != null && errorMessage != ''">{{ errorMessage }}</span>
             <div class="dropzone-wrapper">
@@ -27,7 +27,8 @@
 
     export default {  
         model: {
-            prop: 'modelValue'            
+            prop: 'modelValue',
+            event: 'file'        
         },      
         props: {      
              id: {
@@ -66,32 +67,15 @@
         data() {
             return {
                 uploading: false,
-                progress: 0,
-                errors: null,
+                progress: 0,                
                 dz: {},
                 files: this.modelValue
             }
         },
-        methods: {
-            syncPictures: function () {
-                var self = this;
-                //self.$parent.setPictures(self.identification, self.files);
-            },
-            removePicture: function (p, idx) {
-                var self = this;
-                var file = p.file;            
-
-                Vue.http.post(self.$parent.config.urlDeleteImage, { file: file })
-                    .then(function () {
-                        self.dz.removeFile(self.dz.files[idx]);
-                        self.files.$remove(p);
-                        self.syncPictures();            
-
-                        self.$parent.notify('Obrázek ' + file + ' byl odstraněn.');
-                    },
-                    function () {
-                        self.$parent.notify('Nepovedlo se odstranit obrázek ' + file + '!', 'danger');
-                    });                        
+        methods: {          
+            removeFile: function (p, idx) {                
+                this.dz.removeFile(self.dz.files[idx]);
+                this.files.$remove(p);                
             }        
         }, 
         mounted() {            
@@ -120,9 +104,8 @@
                             this.on('error',
                                 function (file, message) {
                                     this.removeFile(file);
-                                    self.uploading = false;                                
-                                    self.errors = { isValid: false, errors: [ { key: '_', value: message } ] };
-                                    console.log('fail');
+                                    self.uploading = false;                                                                    
+                                    self.$emit('error', message);                                                                        
                                 });
 
                             this.on('success',
@@ -130,20 +113,15 @@
                                     self.errors = null;
                                     self.uploading = false;                                
 
-                                    self.files.push({                                    
-                                        file: json.File                                    
-                                    });
-
-                                    //self.$parent.notify('Obrázek ' + json.File + ' byl úspěšně nahraný.');
-
-                                    self.syncPictures();
+                                    self.files.push(json);
+                                    self.$emit('file-uploaded', json);                                    
                                 });
 
                             this.on('uploadprogress',
                                 function (file, progress, bytesSent) {                                
                                     self.errorMessage = null;
                                     self.uploading = true;
-                                    self.progress = Math.round(progress);
+                                    self.$emit('upload-progress', Math.round(progress));
                                 });
                         }
                     });

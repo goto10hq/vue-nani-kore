@@ -173,14 +173,16 @@ notifyMe() {
     </code></pre>
     
     <h2>Uploader</h2>    
-
+    
     <div class="text-danger">THIS IS WORK IN PROGRESS. NOT A PART OF OFFICIAL BUNDLE YET.</div>
     
-    <uploader url='https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart' v-model="uploader.files">        
-        <template slot="file" scope="{data}">
+    <alert v-for="(i, idx) in uploader.errors" type="danger" :duration="5000" @close="uploader.errors.splice(idx, 1)" :closable="true" :key="i.id" :errors="i.errors"></alert>
+
+    <uploader url='http://localhost:41097/api/upload-image' v-model="uploader.files" @error="uploaderError">        
+        <template slot="file" scope="{data}">            
             <div class="col-md-3">
                 <div class="thumbnail">
-                    <img :src="'blob/' + data.file" class="img-responsive img-rounded" :alt="data.file">                                    
+                    <img :src="data.server + data.file" class="img-responsive img-rounded" :alt="data.size">                                    
                 </div>
                 <a href="#" class="btn btn-xs btn-danger" @click.prevent="deleteFile(data.id)">Delete</a>                
             </div>
