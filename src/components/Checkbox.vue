@@ -21,7 +21,6 @@
             prop: 'modelValue',
             event: 'input'
         },
-
         props: {
             id: {
                 type: String,

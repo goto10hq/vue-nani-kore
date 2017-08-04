@@ -36,6 +36,9 @@ new Vue({
             notify: {
                 method: 'first',
                 position: 'top-right'
+            },
+            uploader: {
+                files: [{ id: 1, file: 'a.jpg' }, { id: 2, file: 'b.jpg' }]
             }
         }
     },    
@@ -45,6 +48,13 @@ new Vue({
         },
         notifyMe() {            
             this.bus.$emit('show-notification', { closable: true, data: { title: 'Important message', text: 'Hello, people of Earth. My cosmic watch shows: ' + new Date().getTime() }})
+        },
+        deleteFile(id) {
+            let idx = this.uploader.files.findIndex((x) => { return x.id == id; });            
+            
+            if (idx >= 0) {
+                this.uploader.files.splice(idx, 1);
+            }
         }
     }
 });

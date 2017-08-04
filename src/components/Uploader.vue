@@ -1,25 +1,23 @@
 <template>
-    <div>
-        <div class="row">
-            <div class="col-md-12" v-show="maxFiles == 0 || maxFiles > files.length">
-                <span class="label label-danger" v-if="errorMessage != null && errorMessage != ''">{{ errorMessage }}</span>
-                <div class="dropzone-wrapper">
-                    <form ref="formie" action="" class="dropzone-area text-center">
-                        {{ text }} 
-                        <span v-if="working" class="icon-spin1 animate-spin"></span>
-                        <div v-if="uploading">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" :aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100" :style="'width:' + progress + '%'"><span class="sr-only">Nahrávám obrázek {{progress}}%</span></div>
-                            </div>
+    <div :class="className">            
+        <div v-show="maxFiles == 0 || maxFiles > files.length">
+            <span class="label label-danger" v-if="errorMessage != null && errorMessage != ''">{{ errorMessage }}</span>
+            <div class="dropzone-wrapper">
+                <form ref="formie" action="" class="dropzone-area text-center">
+                    {{ text }} 
+                    <span v-if="working" class="icon-spin1 animate-spin"></span>
+                    <div v-if="uploading">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" :aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100" :style="'width:' + progress + '%'"><span class="sr-only">Nahrávám obrázek {{progress}}%</span></div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
-        </div>
+        </div>         
         <div class="row">
-            <div class="col-md-3" v-for="(f, idx) in files" v-bind:key="idx">                
-                <slot name="content" :data="f"></slot>                
-            </div>
+            <div v-for="(f, idx) in files" v-bind:key="idx">
+                <slot name="file" :data="f"></slot>             
+            </div>                   
         </div>
     </div>
 </template>
@@ -27,13 +25,26 @@
 
     var Dropzone = require('dropzone');
 
-    export default {        
+    export default {  
+        model: {
+            prop: 'modelValue'            
+        },      
         props: {      
              id: {
                 type: String,
                 default: function () {
                     return 'uploader-id-' + this._uid;
                 },
+            },
+            modelValue: {
+                type: Array,
+                default() {
+                    return [];
+                }
+            },
+            className: {
+                type: String,
+                default: 'nk-uploader',
             },
             text: {
                 type: String,
@@ -42,13 +53,7 @@
             maxFiles: {
                 type: Number,
                 default: 0
-            },
-            files: {
-                type: Array,
-                default() {
-                    return [];
-                }
-            },
+            },            
             messageMaxFilesExceeded: {
                 type: String,
                 default: 'Number of files uploaded reached a limit.'
@@ -63,7 +68,8 @@
                 uploading: false,
                 progress: 0,
                 errors: null,
-                dz: {}    
+                dz: {},
+                files: this.modelValue
             }
         },
         methods: {
@@ -191,71 +197,73 @@
         letter-spacing: 0.4px;
     }
 
-    .dropzone-wrapper {
-        display: table;
-        width: 100%;
-        margin-bottom: $grid-gutter-width / 2;
-    }
-    .dropzone-area {
-        /*width: 100%;*/
-        height: 100px;
-        position: relative;
-        border: 2px dashed $color-border;    
-        display: table-cell;
-        vertical-align: middle;
-        &:hover, &.dropzone-hover {
-            border: 2px dashed $color-ok-solid;
-            .dropzone-title {
-                color: darken($color-ok-text, 10);
+    .nk-uploader {
+        .dropzone-wrapper {
+            display: table;
+            width: 100%;
+            margin-bottom: $grid-gutter-width / 2;
+        }
+        .dropzone-area {
+            /*width: 100%;*/
+            height: 100px;
+            position: relative;
+            border: 2px dashed $color-border;    
+            display: table-cell;
+            vertical-align: middle;
+            &:hover, &.dropzone-hover {
+                border: 2px dashed $color-ok-solid;
+                .dropzone-title {
+                    color: darken($color-ok-text, 10);
+                }
             }
         }
-    }
 
-    .dropzone-area input {
-        position: absolute;
-        cursor: pointer;
-        top: 0px;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-    }
-
-    .dropzone-text {
-        position: absolute;
-        top: 50%;
-        text-align: center;
-        transform: translate(0, -50%);
-        width: 100%;
-        span {
-            display: block;
+        .dropzone-area input {
+            position: absolute;
+            cursor: pointer;
+            top: 0px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
         }
-    }
 
-    .dropzone-title {
-        @include text-dropdown();
-    }
-    .dropzone-info {
-        @include text-descrete();
-    }
-
-    .dropzone-close.modal-close {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        visibility: hidden;
-        transform: inherit;    
-        &:hover span {
-            background-color: $color-warning-solid;
+        .dropzone-text {
+            position: absolute;
+            top: 50%;
+            text-align: center;
+            transform: translate(0, -50%);
+            width: 100%;
+            span {
+                display: block;
+            }
         }
-    }
 
-    .dropzone-preview {
-        position: relative;
-        &:hover .dropzone-close.modal-close {
-            visibility: visible;
+        .dropzone-title {
+            @include text-dropdown();
+        }
+        .dropzone-info {
+            @include text-descrete();
+        }
+
+        .dropzone-close.modal-close {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            visibility: hidden;
+            transform: inherit;    
+            &:hover span {
+                background-color: $color-warning-solid;
+            }
+        }
+
+        .dropzone-preview {
+            position: relative;
+            &:hover .dropzone-close.modal-close {
+                visibility: visible;
+            }
         }
     }
 </style>

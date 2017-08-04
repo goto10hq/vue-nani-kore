@@ -118,7 +118,7 @@ addAlert () {
         <h4>{{ data.title }}</h4>
         <p>{{ data.text }}</p>                
         </div>
-    </template>
+    </template>    
 </notify>
 
 <div class="form-group">
@@ -176,14 +176,24 @@ notifyMe() {
 
     <div class="text-danger">THIS IS WORK IN PROGRESS. NOT A PART OF OFFICIAL BUNDLE YET.</div>
     
-    <uploader url='https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart' :files="[ { file: 'a.jpg' }, { file: 'b.jpg' }]">
-        <template slot="content" scope="{data}">
-            <div class="thumbnail">
-                <img :src="'blob/' + data.file" class="img-responsive img-rounded" :alt="data.file">                
-                <a href="#" class="btn btn-xs btn-danger" v-on:click.prevent="">Delete</a>                
+    <uploader url='https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart' v-model="uploader.files">        
+        <template slot="file" scope="{data}">
+            <div class="col-md-3">
+                <div class="thumbnail">
+                    <img :src="'blob/' + data.file" class="img-responsive img-rounded" :alt="data.file">                                    
+                </div>
+                <a href="#" class="btn btn-xs btn-danger" @click.prevent="deleteFile(data.id)">Delete</a>                
             </div>
-        </template>
+        </template>                
     </uploader>
+
+    <div class="form-group">
+    </div>
+    <div>
+        <p>
+            <strong>Values:</strong> {{ uploader }}
+        </p>
+    </div>
 </div>
 <script src="build/app.js"></script>
 </body>
