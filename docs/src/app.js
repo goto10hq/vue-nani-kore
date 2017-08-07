@@ -1,9 +1,16 @@
 import Vue from 'vue';
 import VueHighlightJS from 'vue-highlightjs'
 import NaniKore from '../../src';
+import VueLazyload from 'vue-lazyload'
 
 Vue.use(NaniKore);
 Vue.use(VueHighlightJS);
+Vue.use(VueLazyload, {
+        preLoad: 1.3,
+        //error: '/blob/error.png',
+        loading: 'blob/loading.gif',
+        attempt: 1
+    })
 
 const bus = new Vue();
 

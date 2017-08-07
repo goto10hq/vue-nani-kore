@@ -184,7 +184,7 @@ notifyMe() {
         <template slot="file" scope="{data}">            
             <div class="col-md-3">
                 <div class="thumbnail">
-                    <img :src="data.server + data.file" class="img-responsive img-rounded" :alt="data.size">                                    
+                    <img v-lazy="data.server + data.file" class="img-responsive img-rounded" :alt="data.size">                                    
                 </div>
                 <a href="#" class="btn btn-xs btn-danger" @click.prevent="deleteFile(data.id)">Delete</a>                
             </div>
