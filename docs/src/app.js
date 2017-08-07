@@ -71,6 +71,9 @@ new Vue({
                 this.uploader.alerts.push({ id: new Date().getTime(), type: 'danger', errors: { "isValid": false, "errors": [ { "key": "_", "value": errors } ] }, message: null });
             }            
         },
+        uploaderErrorMaxFilesExceeded(file) {
+            this.uploader.alerts.push({ id: new Date().getTime(), type: 'danger', errors: null, message: 'Uploading of file ' + file.name + ' aborted. Max number of files would be exceeded.' });
+        },
         uploaderFilesOrderChanged(files) {            
             this.uploader.alerts.push({ id: new Date().getTime(), type: 'success', errors: null, message: 'Order changed.' });            
         }

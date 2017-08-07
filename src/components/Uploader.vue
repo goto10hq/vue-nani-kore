@@ -127,17 +127,7 @@
                             // );
 
                             this.on('error',
-                                function (file, message) {
-                                    try {
-                                        that.off('error');
-                                        that.removeFile(file);
-                                    } 
-                                    catch(e) {                                
-                                    }
-                                    finally {
-                                        that.on('error');
-                                    }
-
+                                function (file, message) {                                    
                                     self.uploading = false;                                       
                                     self.$emit('error', message);
                                 });
