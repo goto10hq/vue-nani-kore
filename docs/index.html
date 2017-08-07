@@ -176,7 +176,7 @@ notifyMe() {
     
     <h2>Uploader</h2>        
         
-    <blockquote class="text-danger">End point doesn't exist. All uploads will fail. I may deploy somewhere a working backend API in the future.</blockquote>    
+    <blockquote class="text-danger">End point defined as Url parameter doesn't exist. All uploads will fail. I may deploy somewhere a working backend API in the future.</blockquote>    
 
 <alert v-for="(i, idx) in uploader.alerts" :type="i.type" :duration="5000" @close="uploader.alerts.splice(idx, 1)" :closable="true" :key="i.id" :errors="i.errors">
     {{ i.message }}
