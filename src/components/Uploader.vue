@@ -22,12 +22,12 @@
 <script>        
 
     import Spinner from 'vue-simple-spinner'
-    import draggable from 'vuedraggable'
-    var Dropzone = require('dropzone');
+    import Draggable from 'vuedraggable'
+    var Dropzone = require('dropzone')
 
     export default {  
         components: {
-            draggable,
+            Draggable,
             Spinner
         },
         model: {
@@ -38,7 +38,7 @@
              id: {
                 type: String,
                 default: function () {
-                    return 'uploader-id-' + this._uid;
+                    return 'uploader-id-' + this._uid
                 },
             },
             sortable: {
@@ -66,7 +66,15 @@
             url: {
                 type: String,
                 required: true
-            }            
+            },
+            fileParameter: {
+                type: String,
+                default: 'file'
+            },
+            parallelUploads: {
+                type: Number,
+                default: 1
+            }        
         },
         data() {
             return {
@@ -92,9 +100,9 @@
             var dz = new Dropzone(self.$refs.formie,
                     {
                         url: self.url,
-                        paramName: "uploadfile",                        
+                        paramName: self.fileParameter,
                         clickable: self.$refs.formie,                        
-                        parallelUploads: 1,
+                        parallelUploads: self.parallelUploads,
                         createImageThumbnails: false,
                         previewTemplate: '<div style="display:none"></div>',
                         init: function () {

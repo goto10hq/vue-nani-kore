@@ -28,7 +28,13 @@ errors | `object` | `null` | special case for displaying errors (internal usage)
 id | `string` | `alert-id-{uid}` | id of element
 type | `string` | `success` | Bootstrap alert type, CSS class is auto generated as `alert alert-{type}`
 
-Special slot for "closing content": `<span slot="close">#</span>`
+Event | Note
+----- | ----
+close | when alert is closed (manually or by timer)
+
+Slot | Note
+---- | ----
+close | close button
 
 ### Checkbox
 
@@ -91,6 +97,10 @@ position | `string` | `top-center` | position of notifications (`top-left`, `top
 type | `string` | `success` | Bootstrap alert type, CSS class is auto generated as `alert alert-{type}`
 width | `int` (px) | `350` | width of one notification
 
+Slot | Note
+---- | ----
+content | content of one notification
+
 ### Radio
 
 ```html
@@ -127,8 +137,10 @@ value | `string` | `null` | value
 Parameter | Type | Default value | Note
 --------- | ---- | ------------- | ----
 class-name | `string` | `nk-uploader` | css class
+file-parameter | `string` | `file` | posted file parameter name for endpoint
 id | `string` | `uploader-id-{uid}` | id of element
 max-files | `int` | `0` | max files to upload (0 = unlimited)
+parallel-uploads | `int` | `1` | number of parallel uploads
 sortable | `boolean` | `false` | result can be sorted by drag'n'drop
 text | `string` | `Drop files here or click to upload` | default info text message
 url | `url` | `null` | upload endpoint
@@ -140,6 +152,11 @@ file-uploaded | file uploaded
 files-order-changed | files order changed
 max-files-exceeded | max files exceeded
 upload-progress | upload progress
+
+
+Slot | Note
+---- | ----
+file | content of one file
 
 ## Install
 
