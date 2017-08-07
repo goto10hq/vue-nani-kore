@@ -3,7 +3,7 @@
         <div v-show="maxFiles == 0 || maxFiles > files.length">            
             <div class="dropzone-wrapper">
                 <form ref="formie" action="" class="dropzone-area text-center">
-                    {{ text }}                                                 
+                    {{ text }}                    {{ uploading }}                             
                     <div v-if="uploading">
                         <div class="progress">
                             <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" :aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100" :style="'width:' + progress + '%'"><span class="sr-only">Nahrávám obrázek {{progress}}%</span></div>
@@ -106,13 +106,17 @@
                                     } 
                                                                         
                                     self.$emit('max-files-exceeded', file);
-
-                                    // https://github.com/ALPIXELMaiki/AlpixelMediaBundle/commit/d4508ef48c2a6c16554479a7ec8d8fd4ef7e2837
+                                    self.uploading = false;
+                                    
                                     try {
+                                        that.off('error');
                                         that.removeFile(file);
                                     } 
                                     catch(e) {                                
                                     }
+                                    finally {
+                                        that.on('error');
+                                    }                                    
                                 });
 
                             // this.on('maxfilesexceeded',
@@ -124,20 +128,22 @@
 
                             this.on('error',
                                 function (file, message) {
-                                    // https://github.com/ALPIXELMaiki/AlpixelMediaBundle/commit/d4508ef48c2a6c16554479a7ec8d8fd4ef7e2837
                                     try {
+                                        that.off('error');
                                         that.removeFile(file);
                                     } 
                                     catch(e) {                                
                                     }
-                                    
+                                    finally {
+                                        that.on('error');
+                                    }
+
                                     self.uploading = false;                                       
                                     self.$emit('error', message);
                                 });
 
                             this.on('success',
-                                function (file, json) {                                
-                                    self.errors = null;
+                                function (file, json) {                                                                    
                                     self.uploading = false;                                
 
                                     self.files.push(json);
@@ -145,8 +151,9 @@
                                 });
 
                             this.on('uploadprogress',
-                                function (file, progress, bytesSent) {                                                                    
-                                    self.uploading = true;
+                                function (file, progress, bytesSent) {                                                                                                        
+                                    let p =  Math.round(progress);
+                                    self.progress = p;
                                     self.$emit('upload-progress', Math.round(progress));
                                 });
                         }
