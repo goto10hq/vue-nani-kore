@@ -180,8 +180,8 @@ notifyMe() {
         {{ i.message }}
     </alert>
 
-    <uploader url='http://localhost:41097/api/upload-image' v-model="uploader.files" @error="uploaderError">        
-        <template slot="file" scope="{data}">            
+    <uploader url='http://localhost:41097/api/upload-image' v-model="uploader.files" @error="uploaderError" @files-order-changed="uploaderFilesOrderChanged" :sortable="true">        
+        <template slot="file" scope="{data}">                        
             <div class="col-md-3">
                 <div class="thumbnail">
                     <img v-lazy="data.server + data.file" class="img-responsive img-rounded" :alt="data.size">                                    

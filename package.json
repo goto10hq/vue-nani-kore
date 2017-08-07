@@ -10,10 +10,11 @@
     "dist"
   ],
   "scripts": {
+    "dev": "cross-env node dev-server.js",
     "build": "webpack -p --color --progress",
-    "docs": "webpack -p --color --progress --config docs/webpack.config.js",
+    "build-docs": "webpack -p --color --progress --config docs/webpack.config.js",
     "build-watch": "webpack -p --watch --color --progress",
-    "docs-watch": "webpack -p --watch --color --progress --config docs/webpack.config.js"
+    "build-docs-watch": "webpack -p --watch --color --progress --config docs/webpack.config.js"
   },
   "author": {
     "name": "Joey Frohikey",
@@ -30,33 +31,42 @@
   "homepage": "https://github.com/goto10hq/vue-nani-kore/#readme",
   "license": "MIT",
   "devDependencies": {
+    "animate.css": "^3.5.2",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
     "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.0",
     "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "bootstrap-loader": "^2.1.0",
+    "bootstrap-sass": "^3.3.7",
+    "connect-history-api-fallback": "^1.3.0",
+    "cross-env": "^5.0.4",
     "css-loader": "^0.28.4",
+    "dropzone": "^5.1.1",
+    "express": "^4.15.4",
     "extract-text-webpack-plugin": "^3.0.0",
+    "http-proxy-middleware": "^0.17.4",
+    "jquery": "^3.2.1",
     "node-sass": "^4.5.3",
+    "opn": "^5.1.0",
+    "resolve-url-loader": "^2.1.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "vue": "^2.4.2",
+    "vue-highlightjs": "^1.3.3",
+    "vue-lazyload": "^1.0.6",
     "vue-loader": "^12.2.2",
     "vue-template-compiler": "^2.4.2",
+    "vuedraggable": "^2.14.1",
     "webpack": "^3.4.1",
-    "resolve-url-loader": "^2.1.0",
-    "bootstrap-loader": "^2.1.0",
-    "bootstrap-sass": "^3.3.7",
-    "jquery": "^3.2.1",
-    "vue-highlightjs": "^1.3.3",
-    "dropzone": "^5.1.1"
+    "webpack-dev-middleware": "^1.12.0",
+    "webpack-hot-middleware": "^2.18.2"
   },
   "dependencies": {
     "animate.css": "^3.5.2",
     "bootstrap-sass": "^3.3.7",
     "dropzone": "^5.1.1",
     "vue": "^2.4.2",
-    "vue-lazyload": "^1.0.6",
-    "webpack": "^3.4.1"
+    "vuedraggable": "^2.14.1"
   }
 }

@@ -5,8 +5,7 @@ import VueLazyload from 'vue-lazyload'
 
 Vue.use(NaniKore);
 Vue.use(VueHighlightJS);
-Vue.use(VueLazyload, {
-        preLoad: 1.3,
+Vue.use(VueLazyload, {        
         //error: '/blob/error.png',
         loading: 'blob/loading.gif',
         attempt: 1
@@ -71,6 +70,11 @@ new Vue({
             } catch (e) {
                 this.uploader.alerts.push({ id: new Date().getTime(), type: 'danger', errors: { "isValid": false, "errors": [ { "key": "_", "value": errors } ] }, message: null });
             }            
+        },
+        uploaderFilesOrderChanged(files) {
+            console.log(files);
+            this.files = files.filter((i) => { return i });
+            this.files.push({ });
         }
     }
 });

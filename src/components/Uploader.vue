@@ -1,11 +1,9 @@
 <template>
     <div :class="className">                
-        <div v-show="maxFiles == 0 || maxFiles > files.length">
-            <span class="label label-danger" v-if="errorMessage != null && errorMessage != ''">{{ errorMessage }}</span>
+        <div v-show="maxFiles == 0 || maxFiles > files.length">            
             <div class="dropzone-wrapper">
                 <form ref="formie" action="" class="dropzone-area text-center">
-                    {{ text }} 
-                    <span v-if="working" class="icon-spin1 animate-spin"></span>
+                    {{ text }}                             
                     <div v-if="uploading">
                         <div class="progress">
                             <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" :aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100" :style="'width:' + progress + '%'"><span class="sr-only">Nahrávám obrázek {{progress}}%</span></div>
@@ -15,17 +13,23 @@
             </div>
         </div>         
         <div class="row">
-            <div v-for="(f, idx) in files" v-bind:key="idx">
-                <slot name="file" :data="f"></slot>             
-            </div>                   
+            <draggable v-model="files" @change="orderChanged" :options="{ disabled: !sortable }">
+                <div v-for="(f, idx) in files" v-bind:key="idx">
+                    <slot name="file" :data="f"></slot>             
+                </div>                   
+            </draggable>
         </div>
     </div>
 </template>
 <script>        
 
+    import draggable from 'vuedraggable';
     var Dropzone = require('dropzone');
 
     export default {  
+        components: {
+            draggable
+        },
         model: {
             prop: 'modelValue',
             event: 'file'        
@@ -36,6 +40,10 @@
                 default: function () {
                     return 'uploader-id-' + this._uid;
                 },
+            },
+            sortable: {
+                type: Boolean,
+                default: false
             },
             modelValue: {
                 type: Array,
@@ -73,10 +81,13 @@
             }
         },
         methods: {          
-            removeFile: function (p, idx) {                
+            removeFile(p, idx) {                
                 this.dz.removeFile(self.dz.files[idx]);
                 this.files.$remove(p);                
-            }        
+            },
+            orderChanged() {
+                this.$emit('files-order-changed', this.files);
+            } 
         }, 
         mounted() {            
             var self = this;    
@@ -119,8 +130,7 @@
                                 });
 
                             this.on('uploadprogress',
-                                function (file, progress, bytesSent) {                                
-                                    self.errorMessage = null;
+                                function (file, progress, bytesSent) {                                                                    
                                     self.uploading = true;
                                     self.$emit('upload-progress', Math.round(progress));
                                 });
