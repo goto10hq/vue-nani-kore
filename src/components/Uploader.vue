@@ -13,10 +13,10 @@
             </div>
         </div>         
         <div class="row">
-            <draggable v-model="files" @change="orderChanged" :options="{ disabled: !sortable }">
+            <draggable v-model="files" @change="orderChanged" :options="{ disabled: !sortable }">                
                 <div v-for="(f, idx) in files" v-bind:key="idx">
                     <slot name="file" :data="f"></slot>             
-                </div>                   
+                </div>                                   
             </draggable>
         </div>
     </div>
@@ -32,7 +32,7 @@
         },
         model: {
             prop: 'modelValue',
-            event: 'file'        
+            event: 'files'        
         },      
         props: {      
              id: {
@@ -86,7 +86,9 @@
                 this.files.$remove(p);                
             },
             orderChanged() {
-                this.$emit('files-order-changed', this.files);
+                //this.files = this.files.filter((i) => { return i });            
+                this.$emit('files', this.files);
+                this.$emit('files-order-changed');
             } 
         }, 
         mounted() {            
@@ -253,6 +255,6 @@
             &:hover .dropzone-close.modal-close {
                 visibility: visible;
             }
-        }
+        }        
     }
 </style>

@@ -71,12 +71,10 @@ new Vue({
                 this.uploader.alerts.push({ id: new Date().getTime(), type: 'danger', errors: { "isValid": false, "errors": [ { "key": "_", "value": errors } ] }, message: null });
             }            
         },
-        uploaderFilesOrderChanged(files) {
-            console.log(files);
-            this.files = files.filter((i) => { return i });
-            this.files.push({ });
+        uploaderFilesOrderChanged(files) {            
+            this.uploader.alerts.push({ id: new Date().getTime(), type: 'success', errors: null, message: 'Order changed.' });            
         }
-    }
+    }   
 });
 
 // App
