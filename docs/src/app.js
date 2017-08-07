@@ -38,7 +38,7 @@ new Vue({
                 position: 'top-right'
             },
             uploader: {
-                errors: [],
+                alerts: [],
                 files: [{ id: 1, file: 'a.jpg', size: 216000, server: 'blob/' }, { id: 2, file: 'b.jpg', size: 110175, server: 'blob/' }]
             }
         }
@@ -60,9 +60,9 @@ new Vue({
         uploaderError(errors) {
             try {
                 JSON.parse(str);
-                this.uploader.errors.push({ id: new Date().getTime(), errors: errors });
+                this.uploader.alerts.push({ id: new Date().getTime(), type: 'danger', errors: errors, message: null });
             } catch (e) {
-                this.uploader.errors.push({ id: new Date().getTime(), errors: { "isValid": false, "errors": [ { "key": "_", "value": errors } ] } });
+                this.uploader.alerts.push({ id: new Date().getTime(), type: 'danger', errors: { "isValid": false, "errors": [ { "key": "_", "value": errors } ] }, message: null });
             }            
         }
     }

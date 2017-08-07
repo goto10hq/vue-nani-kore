@@ -176,7 +176,9 @@ notifyMe() {
     
     <div class="text-danger">THIS IS WORK IN PROGRESS. NOT A PART OF OFFICIAL BUNDLE YET.</div>
     
-    <alert v-for="(i, idx) in uploader.errors" type="danger" :duration="5000" @close="uploader.errors.splice(idx, 1)" :closable="true" :key="i.id" :errors="i.errors"></alert>
+    <alert v-for="(i, idx) in uploader.alerts" :type="i.type" :duration="5000" @close="uploader.alerts.splice(idx, 1)" :closable="true" :key="i.id" :errors="i.errors">
+        {{ i.message }}
+    </alert>
 
     <uploader url='http://localhost:41097/api/upload-image' v-model="uploader.files" @error="uploaderError">        
         <template slot="file" scope="{data}">            
