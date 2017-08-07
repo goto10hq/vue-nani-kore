@@ -3,7 +3,7 @@
         <div v-show="maxFiles == 0 || maxFiles > files.length">            
             <div class="dropzone-wrapper">
                 <form ref="formie" action="" class="dropzone-area text-center">
-                    {{ text }}                             
+                    {{ text }}                                                 
                     <div v-if="uploading">
                         <div class="progress">
                             <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" :aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100" :style="'width:' + progress + '%'"><span class="sr-only">Nahrávám obrázek {{progress}}%</span></div>
@@ -57,16 +57,12 @@
             },
             text: {
                 type: String,
-                default: 'Drop files here or click to upload.'
+                default: 'Drop files here or click to upload'
             },
             maxFiles: {
                 type: Number,
                 default: 0
-            },            
-            messageMaxFilesExceeded: {
-                type: String,
-                default: 'Number of files uploaded reached a limit.'
-            },
+            },                        
             url: {
                 type: String,
                 required: true
@@ -85,8 +81,7 @@
                 this.dz.removeFile(self.dz.files[idx]);
                 this.files.$remove(p);                
             },
-            orderChanged() {
-                //this.files = this.files.filter((i) => { return i });            
+            orderChanged() {                
                 this.$emit('files', this.files);
                 this.$emit('files-order-changed');
             } 
@@ -97,29 +92,47 @@
             var dz = new Dropzone(self.$refs.formie,
                     {
                         url: self.url,
-                        paramName: "uploadfile",
-                        dictMaxFilesExceeded: self.messageMaxFilesExceeded,
+                        paramName: "uploadfile",                        
                         clickable: self.$refs.formie,                        
                         parallelUploads: 1,
                         createImageThumbnails: false,
                         previewTemplate: '<div style="display:none"></div>',
                         init: function () {
-
-                            this.on('addedfile',
+                            var that = this;
+                            this.on('sending',
                                 function (file) {
+                                    if (self.maxFiles == 0 || self.maxFiles > self.files.length) {
+                                        return;
+                                    } 
+                                                                        
+                                    self.$emit('max-files-exceeded', file);
+
+                                    // https://github.com/ALPIXELMaiki/AlpixelMediaBundle/commit/d4508ef48c2a6c16554479a7ec8d8fd4ef7e2837
+                                    try {
+                                        that.removeFile(file);
+                                    } 
+                                    catch(e) {                                
+                                    }
                                 });
 
-                            //this.on('maxfilesexceeded',
+                            // this.on('maxfilesexceeded',
                             //    function (file) {                                
-                            //        this.removeFile(file);
-                            //    });
+                            //         //this.removeFile(file);
+                            //         self.$emit('max-files-exceeded', message);
+                            //    }
+                            // );
 
                             this.on('error',
                                 function (file, message) {
-                                    this.removeFile(file);
-                                    self.uploading = false;   
-                                    console.log('error', message);
-                                    self.$emit('error', message);                                                                        
+                                    // https://github.com/ALPIXELMaiki/AlpixelMediaBundle/commit/d4508ef48c2a6c16554479a7ec8d8fd4ef7e2837
+                                    try {
+                                        that.removeFile(file);
+                                    } 
+                                    catch(e) {                                
+                                    }
+                                    
+                                    self.uploading = false;                                       
+                                    self.$emit('error', message);
                                 });
 
                             this.on('success',
@@ -139,9 +152,10 @@
                         }
                     });
     
-            if (self.maxFiles > 0) {
-                dz.maxFiles = self.maxFiles;
-            }
+            // if (self.maxFiles > 0) {
+            //     dz.maxFiles = self.maxFiles;
+            // }
+
             self.dz = dz;
 
             for (let i = 0; i < self.files.length; i++) {

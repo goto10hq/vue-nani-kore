@@ -163,6 +163,9 @@ notifyMe() {
 <radio v-model="radio.question" name="question" value="Three" border-color="#52395e" fill-color="#c17dd1">3</radio>
 <radio v-model="radio.question" name="question" value="Four" border-color="#52395e" fill-color="#c17dd1" disabled>4 (disabled)</radio>
     </div>    
+    <div class="row">
+        &nbsp;
+    </div>
     <div>
         <p>
             <strong>Value:</strong> {{ radio.question }}
@@ -172,15 +175,13 @@ notifyMe() {
 &lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;One&#34;&gt;1&lt;/radio&gt;&#10;&lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;Two&#34;&gt;2&lt;/radio&gt;&#10;&lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;Three&#34; border-color=&#34;#52395e&#34; fill-color=&#34;#c17dd1&#34;&gt;3&lt;/radio&gt;&#10;&lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;Four&#34; border-color=&#34;#52395e&#34; fill-color=&#34;#c17dd1&#34; disabled&gt;4 (disabled)&lt;/radio&gt;
     </code></pre>
     
-    <h2>Uploader</h2>    
-    
-    <div class="text-danger">THIS IS WORK IN PROGRESS. NOT A PART OF OFFICIAL BUNDLE YET.</div>
+    <h2>Uploader</h2>        
     
     <alert v-for="(i, idx) in uploader.alerts" :type="i.type" :duration="5000" @close="uploader.alerts.splice(idx, 1)" :closable="true" :key="i.id" :errors="i.errors">
         {{ i.message }}
     </alert>
 
-    <uploader url='http://localhost:41097/api/upload-image' v-model="uploader.files" @error="uploaderError" @files-order-changed="uploaderFilesOrderChanged" :sortable="true">      
+    <uploader url='http://localhost:41097/api/upload-image' v-model="uploader.files" @error="uploaderError" @files-order-changed="uploaderFilesOrderChanged" :sortable="true" :max-files="5">   
         <template slot="file" scope="{data}">                        
             <div class="col-md-3">
                 <div class="thumbnail">

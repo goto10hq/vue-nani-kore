@@ -13,7 +13,7 @@ Components can be rendered as standalone one with no CSS dependencies. But most 
 
 ## Usage
 
-**Alert**
+### Alert
 
 ```html
 <alert :closable="true" type="info" :duration="3000" @close="open = false">Hello world.</alert>
@@ -30,7 +30,7 @@ type | `string` | `success` | Bootstrap alert type, CSS class is auto generated 
 
 Special slot for "closing content": `<span slot="close">#</span>`
 
-**Checkbox**
+### Checkbox
 
 ```html
 <checkbox v-model="result">Are you sure?</checkbox>
@@ -48,7 +48,7 @@ name | `string` | `null` | name attribute
 v-model | `string` or `array` | `undefined` | model value
 value | `string` | `null` | value
 
-**CheckboxSwitch**
+### CheckboxSwitch
 
 ```html
 <checkbox-switch v-model="food" value="banana">Banana?</checkbox-switch>               
@@ -64,7 +64,7 @@ name | `string` | `null` | name attribute
 v-model | `string` or `array` | `undefined` | model value
 value | `string` | `null` | value
 
-**Notify**
+### Notify
 
 ```html
 <notify type="info" :event-bus="bus">
@@ -91,7 +91,7 @@ position | `string` | `top-center` | position of notifications (`top-left`, `top
 type | `string` | `success` | Bootstrap alert type, CSS class is auto generated as `alert alert-{type}`
 width | `int` (px) | `350` | width of one notification
 
-**Radio**
+### Radio
 
 ```html
 <radio v-model="question" name="question" value="answer-1">1</radio>
@@ -108,6 +108,38 @@ id | `string` | `radio-id-{uid}` | id of element
 name | `string` | `null` | name attribute
 v-model | `string` or `array` | `undefined` | model value
 value | `string` | `null` | value
+
+### Uploader
+
+```html
+<uploader url='https://nani.kore/api/upload-image' v-model="[]" @error="uploaderError" @files-order-changed="uploaderFilesOrderChanged" :sortable="true">   
+    <template slot="file" scope="{data}">                        
+        <div class="col-md-3">
+            <div class="thumbnail">                
+                <img :src="data.server + data.file" class="img-responsive img-rounded" :alt="data.size">                                    
+            </div>
+            <a href="#" class="btn btn-xs btn-danger" @click.prevent="deleteFile(data.id)">Delete</a>                
+        </div>
+    </template>                
+</uploader>
+```
+
+Parameter | Type | Default value | Note
+--------- | ---- | ------------- | ----
+class-name | `string` | `nk-uploader` | css class
+id | `string` | `uploader-id-{uid}` | id of element
+max-files | `int` | `0` | max files to upload (0 = unlimited)
+sortable | `boolean` | `false` | result can be sorted by drag'n'drop
+text | `string` | `Drop files here or click to upload` | default info text message
+url | `url` | `null` | upload endpoint
+
+Event | Note
+----- | ----
+error | error uploading file
+file-uploaded | file uploaded
+files-order-changed | files order changed
+max-files-exceeded | max files exceeded
+upload-progress | upload progress
 
 ## Install
 
