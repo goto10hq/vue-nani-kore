@@ -1,0 +1,12 @@
+$alert-danger-bg: lighten( #F00, 10%); 
+$alert-danger-border: $alert-danger-bg;
+$alert-danger-text: #FFF;
+
+$alert-info-bg: #286090;
+$alert-info-border: $alert-info-bg;
+$alert-info-text: #FFF;
+
+$alert-success-bg: darken(#DFF0D8, 30%);
+$alert-success-border: $alert-success-bg;
+$alert-success-text: #FFF;
+

@@ -13,8 +13,6 @@ Vue.use(VueLazyload, {
 
 const bus = new Vue();
 
-import 'highlight.js/styles/default.css'
-
 new Vue({
     el: '#app',
 
@@ -80,5 +78,3 @@ new Vue({
     }   
 });
 
-// App
-require('./app.scss');

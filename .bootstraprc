@@ -39,13 +39,14 @@ extractStyles: true
 # based on the values established in the Bootstrap _variables.scss file
 #
 # bootstrapCustomizations: ./path/to/bootstrap/customizations.scss
+bootstrapCustomizations: ./docs/src/_variables.scss
 
 
 # Import your custom styles here
 # Usually this endpoint-file contains list of @imports of your application styles
 #
 # appStyles: ./path/to/your/app/styles/endpoint.scss
-
+appStyles: ./docs/src/app.scss
 
 ### Bootstrap styles
 styles:
