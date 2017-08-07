@@ -58,13 +58,14 @@
     "vue-loader": "^12.2.2",
     "vue-template-compiler": "^2.4.2",
     "vuedraggable": "^2.14.1",
-    "webpack": "^3.4.1"    
+    "webpack": "^3.4.1"
   },
   "dependencies": {
     "animate.css": "^3.5.2",
     "bootstrap-sass": "^3.3.7",
     "dropzone": "^5.1.1",
     "vue": "^2.4.2",
+    "vue-simple-spinner": "^1.2.2",
     "vuedraggable": "^2.14.1"
   }
 }

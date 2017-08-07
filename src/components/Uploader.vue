@@ -3,11 +3,9 @@
         <div v-show="maxFiles == 0 || maxFiles > files.length">            
             <div class="dropzone-wrapper">
                 <form ref="formie" action="" class="dropzone-area text-center">
-                    {{ text }}                    {{ uploading }}                             
-                    <div v-if="uploading">
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" :aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100" :style="'width:' + progress + '%'"><span class="sr-only">Nahrávám obrázek {{progress}}%</span></div>
-                        </div>
+                    {{ text }}
+                    <div v-if="uploading">                        
+                        <spinner :line-size="9" :message="progress + '%'"></spinner>                                                    
                     </div>
                 </form>
             </div>
@@ -23,12 +21,14 @@
 </template>
 <script>        
 
-    import draggable from 'vuedraggable';
+    import Spinner from 'vue-simple-spinner'
+    import draggable from 'vuedraggable'
     var Dropzone = require('dropzone');
 
     export default {  
         components: {
-            draggable
+            draggable,
+            Spinner
         },
         model: {
             prop: 'modelValue',
@@ -144,6 +144,9 @@
                                 function (file, progress, bytesSent) {                                                                                                        
                                     let p =  Math.round(progress);
                                     self.progress = p;
+                                    if (p < 100) {
+                                        self.uploading = true;
+                                    }
                                     self.$emit('upload-progress', Math.round(progress));
                                 });
                         }
