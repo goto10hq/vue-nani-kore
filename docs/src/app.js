@@ -28,7 +28,8 @@ new Vue({
                 clever: true
             },
             radio: {
-                question: null
+                question: null,
+                bool: null
             },
             alert: {
                 closed: false,

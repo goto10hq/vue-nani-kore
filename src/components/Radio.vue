@@ -32,12 +32,10 @@
                 type: String,
                 default: null
             },
-            value: {
-                type: String,
-                default: ''
+            value: {                
+                default: undefined
             },
-            modelValue: {
-                type: String,
+            modelValue: {                
                 default: undefined
             },
             className: {

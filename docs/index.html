@@ -162,12 +162,18 @@ notifyMe() {
 <radio v-model="radio.question" name="question" value="Three" border-color="#52395e" fill-color="#c17dd1">3</radio>
 <radio v-model="radio.question" name="question" value="Four" border-color="#52395e" fill-color="#c17dd1" disabled>4 (disabled)</radio>
     </div>    
+
+    <div>
+<radio v-model="radio.bool" name="bool" :value="true">True</radio>
+<radio v-model="radio.bool" name="bool" :value="false">False</radio>
+    </div>    
+
     <div class="row">
         &nbsp;
     </div>
     <div>
         <p>
-            <strong>Value:</strong> {{ radio.question }}
+            <strong>Values:</strong> {{ radio }}
         </p>
     </div>
     <pre v-highlightjs><code class="html">
