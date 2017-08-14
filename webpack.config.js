@@ -4,7 +4,7 @@ module.exports = {
     context: __dirname,
 
     entry: {
-        index: ['babel-polyfill', './src/index.js']
+        index: ['./src/index.js']
     },
 
     output: {
