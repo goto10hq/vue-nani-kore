@@ -182,6 +182,10 @@ import {CheckboxSwitch} from 'vue-nani-kore';
 Vue.component('checkbox-switch', CheckboxSwitch);
 ```
 
+## TODO
+
+- [ ] Id prop is not rendered in alert
+
 ## License
 
 MIT © [Joey Frohikey](https://github.com/frohikey)

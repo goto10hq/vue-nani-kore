@@ -45,6 +45,9 @@ new Vue({
             uploader: {
                 alerts: [],
                 files: [{ id: 1, file: 'a.jpg', size: 216000, server: 'blob/' }, { id: 2, file: 'b.jpg', size: 110175, server: 'blob/' }]                
+            },
+            loading: {
+                overElement: true
             }
         }
     },    
