@@ -47,7 +47,8 @@ new Vue({
                 files: [{ id: 1, file: 'a.jpg', size: 216000, server: 'blob/' }, { id: 2, file: 'b.jpg', size: 110175, server: 'blob/' }]                
             },
             loading: {
-                overElement: true
+                overElement: true,
+                full: false
             }
         }
     },    
@@ -78,6 +79,13 @@ new Vue({
         },
         uploaderFilesOrderChanged(files) {            
             this.uploader.alerts.push({ id: new Date().getTime(), type: 'success', errors: null, message: 'Order changed.' });            
+        },
+        fullscreenLoading() {
+            let self = this;
+            self.loading.full = true;
+            setTimeout(() => {
+                self.loading.full = false;
+            }, 5000);
         }
     }   
 });

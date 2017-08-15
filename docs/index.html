@@ -11,26 +11,6 @@
 <div id="app" class="page">
     <h1><a href="https://github.com/goto10hq/VueNaniKore">vue-nani-kore</a></h1>
 
-    <h2>Loading</h2>
-     <loading fill-color="#000000" size="80px" :fullscreen="true"></loading> 
-
-      <loading fill-color="#FF3333" :active="loading.overElement">
-        <table class="table">
-            <tr><th>1</th><td>1</td></tr>
-            <tr><th>1</th><td>1</td></tr>
-            <tr><th>1</th><td>1</td></tr>
-            <tr><th>1</th><td>1</td></tr>
-            <tr><th>1</th><td>1</td></tr>
-            <tr><th>1</th><td>1</td></tr>
-            <tr><th>1</th><td>1</td></tr>
-            <tr><th>1</th><td>1</td></tr>
-        </table>
-    </loading>  
-
-    <checkbox-switch v-model="loading.overElement">
-        Loading
-    </checkbox-switch>                
-
     <h2>Alert</h2>
 
 <alert class-name="alert alert-success">Hello.</alert>
@@ -129,6 +109,31 @@ addAlert () {
 &lt;/checkbox-switch&gt;            
     </code></pre>
 
+    <h2>Loading</h2>
+
+<loading fill-color="#000000" size="80px" :fullscreen="true" :active="loading.full"></loading> 
+
+<loading fill-color="#FF3333" :active="loading.overElement">
+    <table class="table">
+        <tr><th>#1</th><td>Nenecchi</td></tr>
+        <tr><th>#2</th><td>Aoba</td></tr>
+        <tr><th>#3</th><td>Umiko</td></tr>
+        <tr><th>#4</th><td>Hifumi</td></tr>
+        <tr><th>#5</th><td>Rin</td></tr>            
+    </table>
+</loading>  
+
+<checkbox-switch v-model="loading.overElement">Loading</checkbox-switch>                
+
+<div class="form-group">
+    <button class="btn btn-primary" @click="fullscreenLoading">Show fullscreen loading for 5s</button>
+</div>
+    <div>
+        <p>
+            <strong>Values:</strong> {{ loading }}
+        </p>
+    </div> 
+    
     <h2>Notify</h2>    
 
 <notify type="info" :event-bus="bus" :position="notify.position" :duration="5000" :method="notify.method">
