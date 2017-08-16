@@ -113,7 +113,7 @@ addAlert () {
 
 <loading size="80px" :fullscreen="true" :active="loading.full"></loading> 
 
-<loading fill-color="#C17DD1" :active="loading.overElement" type="jumping-square">
+<loading :active="loading.overElement && !loading.globalDisable" type="jumping-square">
     <table class="table">
         <tr><th>#1</th><td>Nenecchi</td></tr>
         <tr><th>#2</th><td>Aoba</td></tr>
@@ -125,6 +125,16 @@ addAlert () {
 
 <checkbox-switch v-model="loading.overElement">Loading</checkbox-switch>                
 
+<div class="row">
+    <div class="col-md-4" v-for="lt in loadingTypes">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{ lt }}</div>
+            <div class="panel-body">
+                <loading fill-color="#C17DD1" :type="lt" :active="!loading.globalDisable"></loading>                
+            </div>
+        </div>
+    </div>
+</div>
 <div class="form-group">
     <button class="btn btn-primary" @click="fullscreenLoading">Show fullscreen loading for 5s</button>
 </div>

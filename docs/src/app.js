@@ -46,7 +46,9 @@ new Vue({
                 alerts: [],
                 files: [{ id: 1, file: 'a.jpg', size: 216000, server: 'blob/' }, { id: 2, file: 'b.jpg', size: 110175, server: 'blob/' }]                
             },
+            loadingTypes: [ 'double-bounce', 'jumping-square' ], 
             loading: {
+                globalDisable: false,
                 overElement: true,
                 full: false
             }
@@ -83,8 +85,10 @@ new Vue({
         fullscreenLoading() {
             let self = this;
             self.loading.full = true;
+            self.loading.globalDisable = true;
             setTimeout(() => {
                 self.loading.full = false;
+                self.loading.globalDisable = false;
             }, 5000);
         }
     }   
