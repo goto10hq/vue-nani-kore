@@ -4,8 +4,12 @@
         <div v-if="type == 'double-bounce' || type == 'jumping-square'" :class="['spinner', type]" :style="sizeStyle">    
             <div :style="loadingStyle"></div>
             <div :style="loadingStyle"></div>                         
-        </div>
-            
+        </div>        
+
+        <div v-if="type == 'rotating-square'" :class="['spinner', type]" :style="sizeStyle">    
+            <div :style="loadingStyle"></div>
+        </div>        
+
         <slot></slot>    
     </div>
 </template>
@@ -40,12 +44,9 @@ export default {
     },
     computed: {
         loadingStyle() {
-            if (this.type == 'double-bounce' ||
-                this.type == 'jumping-square') {
-                return {
-                    backgroundColor: this.fillColor                    
-                }
-            }
+            return {
+                backgroundColor: this.fillColor                
+            }            
         },
         sizeStyle() {
             return {
@@ -118,7 +119,7 @@ export default {
                 }
             }
         }
-        
+                
         // *** JUMPING-SQUARE ***        
         &.jumping-square {  
             &>div { 
@@ -145,6 +146,16 @@ export default {
                     border-radius: 3px;
                 }
             }           
+        }
+
+        // *** ROTATING-SQUARE ***        
+        &.rotating-square {
+            &>div {        
+                width: 100%;
+                height: 100%;
+                background-color: #000;                
+                animation: rotating-square 1.2s ease-in-out infinite;                
+            }
         }
     }
 }
@@ -187,4 +198,16 @@ export default {
         transform: scale(1.2, 1);
     }
 }
+
+@keyframes rotating-square {
+    0% {
+      transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+      transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    }
+    100% {
+      transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    }
+  }
 </style>

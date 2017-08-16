@@ -46,8 +46,9 @@ new Vue({
                 alerts: [],
                 files: [{ id: 1, file: 'a.jpg', size: 216000, server: 'blob/' }, { id: 2, file: 'b.jpg', size: 110175, server: 'blob/' }]                
             },
-            loadingTypes: [ 'double-bounce', 'jumping-square' ], 
+            loadingTypes: [ 'double-bounce', 'jumping-square', 'rotating-square' ], 
             loading: {
+                loadingType: 'jumping-square',
                 globalDisable: false,
                 overElement: true,
                 full: false
