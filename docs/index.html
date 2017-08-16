@@ -10,8 +10,14 @@
 <body>
 <div id="app" class="page">
     <h1><a href="https://github.com/goto10hq/VueNaniKore">vue-nani-kore</a></h1>
+    <a href="#nk-alert" class="btn btn-xs btn-primary">Alert</a>
+    <a href="#nk-checkbox" class="btn btn-xs btn-primary">Checkbox</a>
+    <a href="#nk-loading" class="btn btn-xs btn-primary">Loading</a>
+    <a href="#nk-notify" class="btn btn-xs btn-primary">Notify</a>
+    <a href="#nk-radio" class="btn btn-xs btn-primary">Radio</a>
+    <a href="#nk-uploader" class="btn btn-xs btn-primary">Uploader</a>
 
-    <h2>Alert</h2>
+    <h2 id="nk-alert">Alert</h2>
 
 <alert class-name="alert alert-success">Hello.</alert>
 
@@ -51,7 +57,7 @@ addAlert () {
 }        
     </code></pre>
 
-    <h2>Checkbox</h2>
+    <h2 id="nk-checkbox">Checkbox</h2>
 
     <div>
 <checkbox v-model="checkbox.sure">Are you sure?</checkbox>
@@ -109,7 +115,7 @@ addAlert () {
 &lt;/checkbox-switch&gt;            
     </code></pre>
 
-    <h2>Loading</h2>
+    <h2 id="nk-loading">Loading</h2>
 
 <loading size="80px" :fullscreen="true" :active="loading.full"></loading> 
 
@@ -153,8 +159,22 @@ addAlert () {
             <strong>Values:</strong> {{ loading }}
         </p>
     </div> 
+    <pre v-highlightjs><code class="html">
+ &lt;loading size=&#34;80px&#34; :fullscreen=&#34;true&#34; :active=&#34;loading.full&#34;&gt;&lt;/loading&gt; &#10;&#10;&lt;loading :active=&#34;loading.overElement &amp;&amp; !loading.globalDisable&#34; :type=&#34;loading.loadingType&#34;&gt;&#10;    &lt;table class=&#34;table&#34;&gt;&#10;        &lt;tr&gt;&lt;th&gt;#1&lt;/th&gt;&lt;td&gt;Nenecchi&lt;/td&gt;&lt;/tr&gt;&#10;        &lt;tr&gt;&lt;th&gt;#2&lt;/th&gt;&lt;td&gt;Aoba&lt;/td&gt;&lt;/tr&gt;&#10;        &lt;tr&gt;&lt;th&gt;#3&lt;/th&gt;&lt;td&gt;Umiko&lt;/td&gt;&lt;/tr&gt;&#10;        &lt;tr&gt;&lt;th&gt;#4&lt;/th&gt;&lt;td&gt;Hifumi&lt;/td&gt;&lt;/tr&gt;&#10;        &lt;tr&gt;&lt;th&gt;#5&lt;/th&gt;&lt;td&gt;Rin&lt;/td&gt;&lt;/tr&gt;            &#10;    &lt;/table&gt;&#10;&lt;/loading&gt;  &#10;&#10;&lt;div class=&#34;form-group row&#34;&gt;    &#10;    &lt;div class=&#34;col-md-4&#34;&gt;&#10;        &lt;select class=&#34;form-control&#34; v-model=&#34;loading.loadingType&#34;&gt;&#10;            &lt;option v-for=&#34;lt in loadingTypes&#34; :value=&#34;lt&#34;&gt;{<span>{</span> lt }}&lt;/option&gt;&#10;        &lt;/select&gt;&#10;    &lt;/div&gt;&#10;&lt;/div&gt;&#10;&#10;&lt;div class=&#34;form-group&#34;&gt;&#10;    &lt;checkbox-switch v-model=&#34;loading.overElement&#34;&gt;Loading&lt;/checkbox-switch&gt;                &#10;&lt;/div&gt;&#10;&#10;&lt;div class=&#34;row&#34;&gt;&#10;    &lt;div class=&#34;col-md-4&#34; v-for=&#34;lt in loadingTypes&#34;&gt;&#10;        &lt;div class=&#34;panel panel-default&#34;&gt;&#10;            &lt;div class=&#34;panel-heading&#34;&gt;{<span>{</span> lt }}&lt;/div&gt;&#10;            &lt;div class=&#34;panel-body&#34;&gt;&#10;                &lt;loading fill-color=&#34;#C17DD1&#34; :type=&#34;lt&#34; :active=&#34;!loading.globalDisable&#34; size=&#34;20px&#34;&gt;&lt;/loading&gt;                &#10;            &lt;/div&gt;&#10;        &lt;/div&gt;&#10;    &lt;/div&gt;&#10;&lt;/div&gt;&#10;&lt;div class=&#34;form-group&#34;&gt;&#10;    &lt;button class=&#34;btn btn-primary&#34; @click=&#34;fullscreenLoading&#34;&gt;Show fullscreen loading for 5s&lt;/button&gt;&#10;&lt;/div&gt;       
+    </code></pre>
+    <pre v-highlightjs><code class="javascript">
+ fullscreenLoading() {
+    let self = this;
+    self.loading.full = true;
+    self.loading.globalDisable = true;
+    setTimeout(() => {
+        self.loading.full = false;
+        self.loading.globalDisable = false;
+    }, 5000);
+}
+    </code></pre>
 
-    <h2>Notify</h2>    
+    <h2 id="nk-notify">Notify</h2>    
 
 <notify type="info" :event-bus="bus" :position="notify.position" :duration="5000" :method="notify.method">
     <template slot="content" scope="{data}">
@@ -199,7 +219,7 @@ notifyMe() {
 }    
     </code></pre>
 
-    <h2>Radio</h2>
+    <h2 id="nk-radio">Radio</h2>
 
     <div>
 <radio v-model="radio.question" name="question" value="One">1</radio>
@@ -225,7 +245,7 @@ notifyMe() {
 &lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;One&#34;&gt;1&lt;/radio&gt;&#10;&lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;Two&#34;&gt;2&lt;/radio&gt;&#10;&lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;Three&#34; border-color=&#34;#52395e&#34; fill-color=&#34;#c17dd1&#34;&gt;3&lt;/radio&gt;&#10;&lt;radio v-model=&#34;radio.question&#34; name=&#34;question&#34; value=&#34;Four&#34; border-color=&#34;#52395e&#34; fill-color=&#34;#c17dd1&#34; disabled&gt;4 (disabled)&lt;/radio&gt;
     </code></pre>
     
-    <h2>Uploader</h2>        
+    <h2 id="nk-uploader">Uploader</h2>        
         
     <blockquote class="text-danger">End point defined as Url parameter doesn't exist. All uploads will fail. I may deploy somewhere a working backend API in the future.</blockquote>    
 
