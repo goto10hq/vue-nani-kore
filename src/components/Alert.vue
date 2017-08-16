@@ -7,8 +7,7 @@
     <span v-html="errorMessage"></span>    
   </div>
 </template>
-
-<script>
+<script>    
   export default {
     props: {
         id: {
