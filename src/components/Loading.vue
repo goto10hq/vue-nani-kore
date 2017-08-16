@@ -1,15 +1,12 @@
 <template>
     <div :id="id" :class="['nk-loading', active ? 'loading' : '', fullscreen ? 'fullscreen' : '']">
     
-        <div v-if="type == 'double-bounce'" class="spinner double-bounce" :style="sizeStyle">    
+        <div v-if="type == 'double-bounce' || type == 'jumping-square'" :class="['spinner', type]" :style="sizeStyle">    
             <div :style="loadingStyle"></div>
             <div :style="loadingStyle"></div>                         
         </div>
-    
-        <div v-if="type == 'jumping-square'" class="spinner jumping-square" :style="sizeStyle"></div>
-
-        <slot></slot>
-    
+            
+        <slot></slot>    
     </div>
 </template>
 <script>
@@ -31,10 +28,7 @@ export default {
         },
         size: {
             default: '40px'
-        },
-        duration: {
-            default: '2.0s'
-        },
+        },        
         active: {
             type: Boolean,
             default: true
@@ -46,10 +40,10 @@ export default {
     },
     computed: {
         loadingStyle() {
-            if (this.type == 'double-bounce') {
+            if (this.type == 'double-bounce' ||
+                this.type == 'jumping-square') {
                 return {
-                    backgroundColor: this.fillColor,
-                    animationDuration: this.duration
+                    backgroundColor: this.fillColor                    
                 }
             }
         },
@@ -126,31 +120,31 @@ export default {
         }
         
         // *** JUMPING-SQUARE ***        
-        &.jumping-square {
-            &:before {
+        &.jumping-square {  
+            &>div { 
                 content: '';
                 width: 100%;
-                height: 20%;
-                min-width: 5px;
-                background: #000;
-                opacity: 0.1;
                 position: absolute;
-                bottom: 0%;
                 left: 0;
-                border-radius: 50%;
-                animation: rotate-square-2-shadow .5s linear infinite;
-            }
-            &:after {
-                content: '';
-                width: 100%;
-                height: 100%;
-                background: #000;
-                animation: rotate-square-2-animate .5s linear infinite;
-                position: absolute;
-                bottom: 40%;
-                left: 0;
-                border-radius: 3px;
-            }
+
+                &:nth-child(1) {
+                    height: 20%;
+                    min-width: 5px;
+                    background: #000;
+                    opacity: 0.1;                    
+                    bottom: 0%;                    
+                    border-radius: 50%;
+                    animation: jumping-square-shadow .5s linear infinite;
+                }                
+
+                &:nth-child(2) {                    
+                    height: 100%;
+                    background: #41b883;
+                    animation: jumping-square-animate .5s linear infinite;                    
+                    bottom:40%;                
+                    border-radius: 3px;
+                }
+            }           
         }
     }
 }
@@ -165,7 +159,7 @@ export default {
     }
 }
 
-@keyframes rotate-square-2-animate {
+@keyframes jumping-square-animate {
     17% {
         border-bottom-right-radius: 3px;
     }
@@ -184,7 +178,7 @@ export default {
     }
 }
 
-@keyframes rotate-square-2-shadow {
+@keyframes jumping-square-shadow {
     0%,
     100% {
         transform: scale(1, 1);
