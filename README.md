@@ -70,6 +70,30 @@ name | `string` | `null` | name attribute
 v-model | `string` or `array` | `undefined` | model value
 value | `string` | `null` | value
 
+### Loading
+
+```html
+<loading size="80px" :fullscreen="true" :active="true" type="rotating-box"></loading> 
+<loading :active="true">
+    <table>...</table>
+</loading> 
+```
+
+Parameter | Type | Default value | Note
+--------- | ---- | ------------- | ----
+active | `boolean` | `true` | show or hide loading
+fill-color | `string` | `#000000` | fill color
+fullscreen | `boolean` | `false` | fullscreen mode
+id | `string` | `loading-id-{uid}` | id of element
+size | `string` | `40px` | size of loading
+type | `string` | `double-bounce` | type of loading
+
+Loading types:
+
+- `double-bounce`
+- `jumping-square`
+- `rotating-square`
+
 ### Notify
 
 ```html
