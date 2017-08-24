@@ -1,6 +1,16 @@
-const path = require('path');
+const path = require('path')
+const version = require('./package.json').version
+const webpack = require('webpack')
 
-module.exports = {
+const banner =
+'/*!\n' +
+' * vue-nani-kore v' + version + ' (https://github.com/goto10hq/vue-nani-kore)\n' +
+' * (c) ' + new Date().getFullYear() + ' Frohikey / Goto10 \n' +
+' * Released under the MIT License.\n' +
+' */'
+
+module.exports = {    
+
     context: __dirname,
 
     entry: {
@@ -39,5 +49,13 @@ module.exports = {
 
     externals: {
         vue: 'vue',
-    }
+    },
+
+    plugins: [
+        new webpack.BannerPlugin({
+          banner: banner,
+          raw: true,
+          entryOnly: true
+        })
+    ]
 };

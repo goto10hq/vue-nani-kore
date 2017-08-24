@@ -59,6 +59,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 // https://github.com/nguyenvanduocit/vue-loading-spinner
+// https://github.com/greyby/vue-spinner
 .nk-loading {
     position: relative;
 
@@ -156,7 +157,7 @@ export default {
                 background-color: #000;                
                 animation: rotating-square 1.2s ease-in-out infinite;                
             }
-        }
+        }        
     }
 }
 

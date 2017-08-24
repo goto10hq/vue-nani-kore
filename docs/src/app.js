@@ -68,7 +68,7 @@ new Vue({
             if (idx >= 0) {
                 this.uploader.files.splice(idx, 1);
             }
-        },
+        },   
         uploaderError(errors) {
             try {
                 JSON.parse(str);

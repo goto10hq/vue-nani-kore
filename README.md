@@ -211,6 +211,7 @@ Vue.component('checkbox-switch', CheckboxSwitch);
 - [ ] Id prop is not rendered in alert
 - [ ] Add a couple of loading types for fun
 - [ ] Uploader glitches if we user lazy-loading and set a sortable flag to true
+- [ ] Notify with Vuex support
 
 ## License
 
