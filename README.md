@@ -208,10 +208,13 @@ Vue.component('checkbox-switch', CheckboxSwitch);
 
 ## TODO
 
-- [ ] Id prop is not rendered in alert
-- [ ] Add a couple of loading types for fun
-- [ ] Uploader glitches if we user lazy-loading and set a sortable flag to true
-- [ ] Notify with Vuex support
+- Id prop is not rendered in alert
+- Add a couple of loading types for fun
+- Uploader glitches if we user lazy-loading and set a sortable flag to true (check it again - new lazy-loading is up)
+- Notify with Vuex support
+- Highlight for typeahead
+- Better sample for typeahed
+- Docs for typeahead
 
 ## License
 
