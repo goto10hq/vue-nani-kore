@@ -5,6 +5,7 @@ import Alert from './components/Alert';
 import Notify from './components/Notify';
 import Uploader from './components/Uploader';
 import Loading from './components/Loading';
+import Typeahead from './components/Typeahead';
 
 export default {
     install (Vue) {        
@@ -15,7 +16,8 @@ export default {
         Vue.component('notify', Notify);
         Vue.component('uploader', Uploader);
         Vue.component('loading', Loading);
+        Vue.component('typeahead', Typeahead);
     }
 }
 
-export { CheckboxSwitch, Checkbox, Radio, Alert, Notify, Uploader, Loading }
+export { CheckboxSwitch, Checkbox, Radio, Alert, Notify, Uploader, Loading, Typeahead }

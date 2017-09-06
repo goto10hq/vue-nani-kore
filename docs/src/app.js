@@ -52,6 +52,14 @@ new Vue({
                 globalDisable: false,
                 overElement: true,
                 full: false
+            },
+            typeahead: {
+                firstText: '',
+                secondText: 'frohikey',
+                data: [
+                    { name: 'čarodějnice' },
+                    { name: 'witch' }
+                ]
             }
         }
     },    
