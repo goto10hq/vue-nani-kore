@@ -93,6 +93,11 @@ export default {
     return text;
   },
 	highlight(text, search) {
+		
+		function spliceIt(text, idx, rem, s) {
+			return (text.slice(0, idx) + s + text.slice(idx + Math.abs(rem)));
+		} 
+
 		let self = this;
 		let searchN = this.removeDiacritics(search).toLowerCase();
 		let textN = this.removeDiacritics(text).toLowerCase();		
@@ -105,16 +110,13 @@ export default {
 			for (let m of matches) {								
 				textN.replace(m, (match, i) => {
 					var p1 = text.length - textN.length;					
-					text = self.spliceIt(text, i + p1, 0, '<strong>')					
+					text = spliceIt(text, i + p1, 0, '<strong>')					
 					var p2 = text.length - textN.length;					
-					text = self.spliceIt(text, i + match.length + p2, 0, '</strong>');					
+					text = spliceIt(text, i + match.length + p2, 0, '</strong>');					
 				});
 			}			
 		}
 
 		return text;
-	},
-  spliceIt(text, idx, rem, s) {
-    return (text.slice(0, idx) + s + text.slice(idx + Math.abs(rem)));
-  }  
+	}  
 }

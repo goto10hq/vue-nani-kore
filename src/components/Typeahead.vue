@@ -232,10 +232,7 @@
       },
       highlight (item) {               
         let value = this.itemKey ? item[this.itemKey] : item;        
-        return stringUtils.highlight(value, this.inputEl.value);
-        
-        //let inputValue = this.inputEl.value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')        
-        //return value.replace(new RegExp(`${inputValue}`, this.regexOptions), '<b>$&</b>')
+        return stringUtils.highlight(value, this.inputEl.value);            
       }
     }
   }
