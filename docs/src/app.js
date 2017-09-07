@@ -56,11 +56,14 @@ new Vue({
             typeahead: {
                 firstText: '',
                 secondText: 'frohikey',
-                data: [
-                    { name: 'čarodějnice' },
-                    { name: 'witch' }
+                data: [                    
+                    { name: 'Aoba' },
+                    { name: 'Hifumi' },
+                    { name: 'Nenecchi' },
+                    { name: 'Rin' },
+                    { name: 'Umiko' }
                 ]
-            }
+            }            
         }
     },    
     methods: {
