@@ -212,7 +212,7 @@ Vue.component('checkbox-switch', CheckboxSwitch);
 - Add a couple of loading types for fun
 - Uploader glitches if we user lazy-loading and set a sortable flag to true (check it again - new lazy-loading is up)
 - Notify with Vuex support
-- Highlight for typeahead
+- Highlight options typeahead (tags: before + after)
 - Better sample for typeahed
 - Docs for typeahead
 
