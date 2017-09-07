@@ -10,7 +10,8 @@
     "dist"
   ],
   "scripts": {
-    "dev": "cross-env node dev-server.js",
+    "dev": "concurrently --kill-others \"npm run build-watch\" \"npm run build-docs-watch\" \"npm run dev-server\"",
+    "dev-server": "cross-env node dev-server.js",
     "build": "webpack -p --color --progress",
     "build-docs": "webpack -p --color --progress --config docs/webpack.config.js",
     "build-watch": "webpack -p --watch --color --progress",
@@ -38,6 +39,7 @@
     "babel-preset-env": "^1.6.0",
     "bootstrap-loader": "^2.1.0",
     "bootstrap-sass": "^3.3.7",
+    "concurrently": "^3.5.0",
     "connect-history-api-fallback": "^1.3.0",
     "cross-env": "^5.0.4",
     "css-loader": "^0.28.4",
@@ -64,8 +66,7 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "bootstrap-loader": "^2.2.0",
-    "bootstrap-sass": "^3.3.7",
-    "cross-env": "^5.0.5",
+    "bootstrap-sass": "^3.3.7",    
     "css-loader": "^0.28.7",
     "dropzone": "^5.1.1",
     "vue": "^2.4.2",
