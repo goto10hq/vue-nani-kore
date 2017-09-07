@@ -59,9 +59,10 @@ new Vue({
                 data: [                    
                     { name: 'Aoba' },
                     { name: 'Hifumi' },
+                    { name: 'Hvížďalka' },
                     { name: 'Nenecchi' },
                     { name: 'Rin' },
-                    { name: 'Umiko' }
+                    { name: 'Umiko' },                
                 ]
             }            
         }

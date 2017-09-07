@@ -231,9 +231,8 @@
         this.openDropdown = false
       },
       highlight (item) {               
-        let value = this.itemKey ? item[this.itemKey] : item;
-        return value;
-        //return stringUtils.highlightIt(value, this.inputEl.value);
+        let value = this.itemKey ? item[this.itemKey] : item;        
+        return stringUtils.highlight(value, this.inputEl.value);
         
         //let inputValue = this.inputEl.value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')        
         //return value.replace(new RegExp(`${inputValue}`, this.regexOptions), '<b>$&</b>')

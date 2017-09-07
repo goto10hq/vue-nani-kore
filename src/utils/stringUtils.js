@@ -92,27 +92,28 @@ export default {
 
     return text;
   },
-  highlightItem (patt, item) {        
-    return this.highlight(patt, this.removeDiacritics(item), item);      
-  },
-  highlight(patt, textN, text) {    
-    let self = this;
-    textN.replace(patt, (match, i) => {
-      var p1 = text.length - textN.length;
-      text = self.spliceIt(text, i + p1, 0, '<strong>')
-      var p2 = text.length - textN.length;
-      text = self.spliceIt(text, i + match.length + p2, 0, '</strong>');
-    });
-    return text;
-  },
-  highlightIt(text, search) {
-    let phrase = text.replace(/^\s+|\s+$/g, "").replace(/\s+/g, "|");;
-    let phraseSearch = ["\\b(", phrase, ")"].join("");
-    let pattern = new RegExp(phraseSearch, 'gi');
-    let highlightPattern = new RegExp(phrase, 'gi');
-    
-    this.highlightItem(highlightPattern, search);
-  },
+	highlight(text, search) {
+		let self = this;
+		let searchN = this.removeDiacritics(search).toLowerCase();
+		let textN = this.removeDiacritics(text).toLowerCase();		
+		let phraseSearch = ["\\b(", searchN, ")"].join("");
+		let pattern = new RegExp(phraseSearch, 'gi');		
+
+		let matches = [];
+
+		if (matches = searchN.match(pattern)) {			
+			for (let m of matches) {								
+				textN.replace(m, (match, i) => {
+					var p1 = text.length - textN.length;					
+					text = self.spliceIt(text, i + p1, 0, '<strong>')					
+					var p2 = text.length - textN.length;					
+					text = self.spliceIt(text, i + match.length + p2, 0, '</strong>');					
+				});
+			}			
+		}
+
+		return text;
+	},
   spliceIt(text, idx, rem, s) {
     return (text.slice(0, idx) + s + text.slice(idx + Math.abs(rem)));
   }  
