@@ -162,32 +162,34 @@
         let finalItem = '';
         let found = 0;
 
-        if (this.data != null)
-        {
-          for (let i = 0, l = this.data.length; i < l; i++) {
-            let item = this.data[i]
-            let key = this.itemKey ? item[this.itemKey] : item
-            key = key.toString()
-            let index = -1
-            if (this.ignoreCase) {
-              if (this.ignoreDiacritics) {
-                index = stringUtils.removeDiacritics(key.toLowerCase()).indexOf(stringUtils.removeDiacritics(this.inputEl.value.toLowerCase()))
-              } else {
-                index = key.toLowerCase().indexOf(this.inputEl.value.toLowerCase())
-              }
+        if (this.data === undefined || this.data == null) {
+          return;
+        }
+
+        for (let i = 0, l = this.data.length; i < l; i++) {
+          let item = this.data[i]
+          let key = this.itemKey ? item[this.itemKey] : item
+          key = key.toString()
+          let index = -1
+          if (this.ignoreCase) {
+            if (this.ignoreDiacritics) {
+              index = stringUtils.removeDiacritics(key.toLowerCase()).indexOf(stringUtils.removeDiacritics(this.inputEl.value.toLowerCase()))
             } else {
-              if (this.ignoreDiacritics) {
-                index = stringUtils.removeDiacritics(key).indexOf(stringUtils.removeDiacritics(this.inputEl.value))
-              } else {
-                index = key.indexOf(this.inputEl.value)
-              }
+              index = key.toLowerCase().indexOf(this.inputEl.value.toLowerCase())
             }
-            if (this.matchStart ? index === 0 : index >= 0) {
-              finalItem = item;
-              found++;            
+          } else {
+            if (this.ignoreDiacritics) {
+              index = stringUtils.removeDiacritics(key).indexOf(stringUtils.removeDiacritics(this.inputEl.value))
+            } else {
+              index = key.indexOf(this.inputEl.value)
             }
           }
+          if (this.matchStart ? index === 0 : index >= 0) {
+            finalItem = item;
+            found++;            
+          }
         }
+        
 
         if (found > 1) {
           finalItem = '';
