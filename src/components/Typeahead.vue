@@ -162,12 +162,12 @@
         let finalItem = '';
         let found = 0;
 
-        if (this.data === undefined || this.data == null) {
+        if (this.items === undefined || this.items == null) {
           return;
         }
 
-        for (let i = 0, l = this.data.length; i < l; i++) {
-          let item = this.data[i]
+        for (let i = 0, l = this.items.length; i < l; i++) {
+          let item = this.items[i]
           let key = this.itemKey ? item[this.itemKey] : item
           key = key.toString()
           let index = -1
