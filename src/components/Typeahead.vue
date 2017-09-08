@@ -7,7 +7,8 @@
               v-model="openDropdown"
               :append-to-body="appendToBody"
               :not-close-elements="elements"
-              :position-element="inputEl">
+              :position-element="inputEl"
+              v-click-outside="clickOutsideDropdown">
       <template slot="dropdown">
         <slot name="item" :items="items" :active-index="activeIndex" :select="selectItem" :highlight="highlight">
           <li v-for="(item,index) in items" v-bind:key="index" :class="{active:activeIndex===index}">
@@ -23,6 +24,7 @@
 
 <script>
   // from uiv
+  import ClickOutside from './../directives/click-outside.js'
   import httpUtils from './../utils/httpUtils'
   import stringUtils from './../utils/stringUtils'
   import domUtils from './../utils/domUtils'
@@ -30,6 +32,9 @@
 
   export default {    
     components: { Dropdown },
+    directives: {
+      ClickOutside
+    },
     props: {
       value: {},
       data: {
@@ -115,6 +120,17 @@
         domUtils.on(this.inputEl, domUtils.events.KEY_DOWN, this.inputKeyPressed)
       }
       this.dropdownMenuEl = this.$refs.dropdown.$el.querySelector('.dropdown-menu')
+    
+      if (typeof this.value === 'string') {
+          // direct
+          this.inputEl.value = this.value
+        } else if (this.value) {
+          // is object
+          this.inputEl.value = this.itemKey ? this.value[this.itemKey] : this.value
+        } else {
+          // is null or undefined or something else not valid
+          this.inputEl.value = ''
+        }
     },
     beforeDestroy () {
       if (this.inputEl) {
@@ -125,7 +141,7 @@
       }
     },
     watch: {
-      value (newValue, oldValue) {
+      value (newValue, oldValue) {        
         if (typeof newValue === 'string') {
           // direct
           this.inputEl.value = newValue
@@ -137,8 +153,11 @@
           this.inputEl.value = ''
         }
       }
-    },
+    },    
     methods: {
+      clickOutsideDropdown() {
+          //console.log('i am outside dropdown' +  new Date().getTime())
+      },
       prepareItems (data) {
         this.items = []
         this.activeIndex = 0
@@ -184,7 +203,7 @@
                   if (this.asyncKey) {
                     this.items = data[this.asyncKey];
                     this.activeIndex = 0;
-                    // todo: limit
+                    // todo: limit?
                   } else {
                     this.prepareItems(data);  
                   }                  
@@ -199,7 +218,7 @@
         this.fetchItems(value, this.debounce)
         this.$emit('input', this.forceSelect ? null : value)
       },
-      inputFocused () {
+      inputFocused () {        
         if (this.openOnFocus) {
           let value = this.inputEl.value
           this.fetchItems(value, 0)

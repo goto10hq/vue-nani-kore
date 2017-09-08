@@ -54,7 +54,7 @@ new Vue({
                 full: false
             },
             typeahead: {
-                firstText: '',
+                firstText: 'aoba',
                 secondText: 'frohikey',
                 data: [                    
                     { name: 'Aoba' },
