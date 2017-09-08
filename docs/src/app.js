@@ -53,9 +53,7 @@ new Vue({
                 overElement: true,
                 full: false
             },
-            typeahead: {
-                firstText: 'aoba',
-                secondText: 'frohikey',
+            typeahead: {                
                 data: [                    
                     { name: 'Aoba' },
                     { name: 'Hifumi' },
@@ -63,7 +61,9 @@ new Vue({
                     { name: 'Nenecchi' },
                     { name: 'Rin' },
                     { name: 'Umiko' },                
-                ]
+                ],
+                firstText: { name: 'Aoba' },
+                secondText: 'frohikey'
             }            
         }
     },    

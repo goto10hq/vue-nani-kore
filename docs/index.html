@@ -252,7 +252,7 @@ notifyMe() {
         It's work in progress atm.
     </blockquote>
 
-    <typeahead v-model="typeahead.firstText" :data="typeahead.data" item-key="name" :force-select="true" :open-on-focus="true" :open-on-empty="true"></typeahead>
+    <typeahead v-model="typeahead.firstText" :data="typeahead.data" item-key="name" :force-select="false" :open-on-focus="true" :open-on-empty="true"></typeahead>
 
     <!-- <typeahead v-model="typeahead.secondText" async-src="https://api.github.com/search/users?q=" async-key="items" item-key="login">
         <label class="control-label">Github Users</label>
