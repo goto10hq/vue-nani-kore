@@ -8,7 +8,8 @@ Vue.use(VueHighlightJS);
 Vue.use(VueLazyload, {        
         //error: '/blob/error.png',
         loading: 'blob/loading.gif',
-        attempt: 1
+        attempt: 1,
+        listenEvents: [ 'scroll' ]
     })
 
 const bus = new Vue();
@@ -63,12 +64,12 @@ new Vue({
                     { name: 'Umiko' },                
                 ],
                 firstText: { name: 'Aoba' },
-                secondText: 'frohikey'
+                secondText: 'frohikey'                
             }            
         }
     },    
     methods: {
-        addAlert () {        
+        addAlert () {                    
             this.alert.alerts.push({ id: new Date().getTime() })        
         },
         notifyMe() {            
