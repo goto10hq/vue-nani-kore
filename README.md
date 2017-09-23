@@ -218,4 +218,4 @@ Vue.component('checkbox-switch', CheckboxSwitch);
 
 ## License
 
-MIT © [Joey Frohikey](https://github.com/frohikey)
+MIT © [Joey Frohikey](http://frohikey.com)
