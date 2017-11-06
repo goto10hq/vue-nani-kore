@@ -13,7 +13,7 @@
         id: {
             type: String,
             default: function () {
-                return 'alert-id-' + this._uid;
+                return 'alert-id-' + this._uid
             },
         },
         closable: {
@@ -32,7 +32,7 @@
             type: String,
             default: null
         },
-        errors: { }
+        errors: { },        
     },
     data () {
         return {
@@ -66,7 +66,20 @@
                 return null;
             }
 
-            return this.errors.errors.map((x) => { return x.value }).join('<br />');                
+            if (this.errors.hasOwnProperty('isValid'))
+            {
+                return this.errors.errors.map((x) => { return x.value }).join('<br />');
+            }
+            else
+            {
+                let result = "";
+
+                if (this.errors.hasOwnProperty('message') && this.errors.message != null && this.errors.message != '') {
+                    result += "<strong>" + this.errors.message + "</strong><br />";
+                }
+
+                return result += this.errors.errors.map((x) => { return x.message }).join('<br />');                
+            }
         }
     },
     methods: {
