@@ -16,7 +16,6 @@ const bus = new Vue();
 
 new Vue({
     el: '#app',
-
     data() {
         return { 
             checkboxSwitch: {

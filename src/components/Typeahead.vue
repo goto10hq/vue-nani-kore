@@ -22,8 +22,7 @@
   </div>
 </template>
 
-<script>
-  // from uiv
+<script>  
   import ClickOutside from './../directives/click-outside.js'
   import httpUtils from './../utils/httpUtils'
   import stringUtils from './../utils/stringUtils'
