@@ -60,26 +60,43 @@
         errorMessage() {               
             if (this.errors == null || this.errors.length == 0) {
                 return null;
-            }
+            }            
 
-            if (this.errors.errors == undefined || this.errors.errors == null || this.errors.errors.length == 0) {
-                return null;
-            }
+            if (this.errors.hasOwnProperty('isValid') &&
+                this.errors.hasOwnProperty('errors'))
+            {                
+                if (this.errors.isValid == undefined || this.errors.isValid != false) {
+                    return null;
+                }
+                             
+                if (this.errors.errors == null || this.errors.errors.length == 0) {
+                    return null;
+                }
 
-            if (this.errors.hasOwnProperty('isValid'))
-            {
                 return this.errors.errors.map((x) => { return x.value }).join('<br />');
             }
-            else
-            {
+            else if (this.errors.hasOwnProperty('message') &&
+                     this.errors.hasOwnProperty('errors'))
+            {       
+                if ((this.errors.errors == null || this.errors.errors.length == 0) &&
+                    (this.errors.message == null || this.errors.message == '')) {
+                    return null;
+                }
+
                 let result = "";
 
-                if (this.errors.hasOwnProperty('message') && this.errors.message != null && this.errors.message != '') {
+                if (this.errors.message != null && this.errors.message != '') {
                     result += "<strong>" + this.errors.message + "</strong><br />";
                 }
 
-                return result += this.errors.errors.map((x) => { return x.message }).join('<br />');                
+                if (this.errors.errors != null && this.errors.errors.length != 0) {
+                    result += this.errors.errors.map((x) => { return x.message }).join('<br />');
+                }
+
+                return result; 
             }
+
+            return null;
         }
     },
     methods: {
@@ -91,7 +108,7 @@
     mounted () {
         if (this.duration > 0) {
             this.timeout = setTimeout(this.closeAlert, this.duration);
-      }
+        }
     },
     destroyed () {
         clearTimeout(this.timeout);
