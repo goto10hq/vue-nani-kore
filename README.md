@@ -1,7 +1,9 @@
 # vue-nani-kore
 > A bucket of magnificent VUE components.
 
-Components can be rendered as standalone one with no CSS dependencies. But most of them are (will be) based on Bootstrap 3.x.
+Components can be rendered as standalone one with no CSS dependencies. But most of them are (will be) based on Bootstrap 3.x (and 4.x in the future). 
+By the way jQuery dependencies have been removed. But as Uploader is based on DropZone I use a modified (internal) version of DropZone who does not have
+a dependency on jQuery (that's why it's included in the dist package - it's a little bit bigger)
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Latest Version on NPM](https://img.shields.io/npm/v/vue-nani-kore.svg?style=flat-square)](https://npmjs.com/package/vue-nani-kore)
