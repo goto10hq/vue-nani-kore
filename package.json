@@ -47,7 +47,6 @@
     "express": "^4.15.4",
     "extract-text-webpack-plugin": "^3.0.0",
     "http-proxy-middleware": "^0.17.4",
-    "jquery": "^3.2.1",
     "node-sass": "^4.5.3",
     "opn": "^5.1.0",
     "resolve-url-loader": "^2.1.0",
@@ -64,6 +63,7 @@
   "dependencies": {
     "animate.css": "^3.5.2",
     "babel-preset-env": "^1.6.1",
+    "bootstrap-without-jquery": "^1.0.5",
     "connect-history-api-fallback": "^1.4.0",
     "cross-env": "^5.1.1",
     "dropzone": "^5.2.0",
