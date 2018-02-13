@@ -37,7 +37,8 @@ new Vue({
                 alerts: [],
                 errors: { isValid: false, errors: [ { key: "email", value: "Invalid email." }, { key: "iq", value: "Too low iq." } ] },
                 errors2: { message: "Errors:", errors: [ { field: "email", message: "Invalid email." }, { field: "iq", message: "Too low iq." } ] },
-                errors3: { message: "Oh noes!", errors: null }
+                errors3: { message: "Oh noes!", errors: null },
+                errors4: { errors: [ { key: "email", value: "Invalid email again." }, { key: "iq", value: "Too low iq again." } ] },
             },
             bus: bus,
             notify: {

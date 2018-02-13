@@ -38,6 +38,10 @@
     <alert type="danger" :closable="false" :errors="alert.errors3"></alert>        
 </div>
 
+<div>
+    <alert type="danger" :closable="false" :errors="alert.errors4"></alert>        
+</div>
+
 <div v-if="!alert.closed2">
     <alert type="danger" :closable="true" @close="alert.closed2 = true">Something bad happened.<span slot="close">die</close></alert>
 </div>

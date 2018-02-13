@@ -62,21 +62,8 @@
                 return null;
             }            
 
-            if (this.errors.hasOwnProperty('isValid') &&
+            if (this.errors.hasOwnProperty('message') &&
                 this.errors.hasOwnProperty('errors'))
-            {                
-                if (this.errors.isValid == undefined || this.errors.isValid != false) {
-                    return null;
-                }
-                             
-                if (this.errors.errors == null || this.errors.errors.length == 0) {
-                    return null;
-                }
-
-                return this.errors.errors.map((x) => { return x.value }).join('<br />');
-            }
-            else if (this.errors.hasOwnProperty('message') &&
-                     this.errors.hasOwnProperty('errors'))
             {       
                 if ((this.errors.errors == null || this.errors.errors.length == 0) &&
                     (this.errors.message == null || this.errors.message == '')) {
@@ -94,6 +81,19 @@
                 }
 
                 return result; 
+            }
+            else if (this.errors.hasOwnProperty('errors'))
+            {                
+                if (this.errors.hasOwnProperty('isValid') &&
+                    (this.errors.isValid == undefined || this.errors.isValid != false)) {
+                    return null;
+                }
+                             
+                if (this.errors.errors == null || this.errors.errors.length == 0) {
+                    return null;
+                }
+
+                return this.errors.errors.map((x) => { return x.value }).join('<br />');
             }
 
             return null;
