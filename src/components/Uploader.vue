@@ -11,23 +11,23 @@
             </div>
         </div>         
         <div class="row">
-            <!-- <draggable v-model="files" @change="orderChanged" :options="{ disabled: !sortable }">                 -->
+            <draggable v-model="files" @change="orderChanged" :options="{ disabled: !sortable }">
                 <div v-for="(f, idx) in files" v-bind:key="idx">
                     <slot name="file" :data="f"></slot>             
                 </div>                                   
-            <!-- </draggable> -->
+            </draggable>
         </div>
     </div>
 </template>
 <script>        
 
     import Spinner from 'vue-simple-spinner'
-    //import Draggable from 'vuedraggable'
+    import Draggable from 'vuedraggable'
     var Dropzone = require('dropzone')
 
     export default {  
         components: {
-            //Draggable,
+            Draggable,
             Spinner
         },
         model: {
