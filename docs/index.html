@@ -190,7 +190,7 @@ addAlert () {
     <h2 id="nk-notify">Notify</h2>    
 
 <notify type="info" :event-bus="bus" :position="notify.position" :duration="5000" :method="notify.method">
-    <template slot="content" scope="{data}">
+    <template slot="content" slot-scope="{data}">
         <div>              
         <h4>{{ data.title }}</h4>
         <p>{{ data.text }}</p>                
@@ -223,7 +223,7 @@ addAlert () {
         </p>
     </div>        
     <pre v-highlightjs><code class="html">
-&lt;notify type=&#34;info&#34; :width=&#34;300&#34; :event-bus=&#34;bus&#34; :position=&#34;notify.position&#34; :duration=&#34;5000&#34; :method=&#34;notify.method&#34;&gt;&#10;    &lt;template slot=&#34;content&#34; scope=&#34;{data}&#34;&gt;&#10;        &lt;div&gt;              &#10;        &lt;h4&gt;{<span>{</span> data.title }<span>}</span>&lt;/h4&gt;&#10;        &lt;p&gt;{<span>{</span> data.text }<span>}</span>&lt;/p&gt;                &#10;        &lt;/div&gt;&#10;    &lt;/template&gt;&#10;&lt;/notify&gt;&#10;&#10;&lt;div class=&#34;form-group&#34;&gt;&#10;    &lt;radio v-model=&#34;notify.position&#34; name=&#34;position&#34; value=&#34;top-left&#34;&gt;TOP LEFT&lt;/radio&gt;&#10;    &lt;radio v-model=&#34;notify.position&#34; name=&#34;position&#34; value=&#34;top-center&#34;&gt;TOP CENTER&lt;/radio&gt;    &#10;    &lt;radio v-model=&#34;notify.position&#34; name=&#34;position&#34; value=&#34;top-right&#34;&gt;TOP RIGHT&lt;/radio&gt;    &#10;    &lt;radio v-model=&#34;notify.position&#34; name=&#34;position&#34; value=&#34;bottom-left&#34;&gt;BOTTOM LEFT&lt;/radio&gt;&#10;    &lt;radio v-model=&#34;notify.position&#34; name=&#34;position&#34; value=&#34;bottom-center&#34;&gt;BOTTOM CENTER&lt;/radio&gt;    &#10;    &lt;radio v-model=&#34;notify.position&#34; name=&#34;position&#34; value=&#34;bottom-right&#34;&gt;BOTTOM RIGHT&lt;/radio&gt;    &#10;&lt;/div&gt;&#10;&#10;&lt;div class=&#34;form-group&#34;&gt;&#10;    &lt;radio v-model=&#34;notify.method&#34; name=&#34;method&#34; value=&#34;first&#34;&gt;FIRST&lt;/radio&gt;&#10;    &lt;radio v-model=&#34;notify.method&#34; name=&#34;method&#34; value=&#34;last&#34;&gt;LAST&lt;/radio&gt;&#10;&lt;/div&gt;&#10;&#10;&lt;button type=&#34;button&#34; class=&#34;btn btn-primary&#34; @click=&#34;notifyMe&#34;&gt;What time is it&lt;/button&gt;&#10;&lt;button type=&#34;button&#34; class=&#34;btn btn-danger&#34; @click=&#34;bus.$emit('hide-notifications')&#34;&gt;Hide all&lt;/button&gt;         
+&lt;notify type=&#34;info&#34; :width=&#34;300&#34; :event-bus=&#34;bus&#34; :position=&#34;notify.position&#34; :duration=&#34;5000&#34; :method=&#34;notify.method&#34;&gt;&#10;    &lt;template slot=&#34;content&#34; slot-scope=&#34;{data}&#34;&gt;&#10;        &lt;div&gt;              &#10;        &lt;h4&gt;{<span>{</span> data.title }<span>}</span>&lt;/h4&gt;&#10;        &lt;p&gt;{<span>{</span> data.text }<span>}</span>&lt;/p&gt;                &#10;        &lt;/div&gt;&#10;    &lt;/template&gt;&#10;&lt;/notify&gt;&#10;&#10;&lt;div class=&#34;form-group&#34;&gt;&#10;    &lt;radio v-model=&#34;notify.position&#34; name=&#34;position&#34; value=&#34;top-left&#34;&gt;TOP LEFT&lt;/radio&gt;&#10;    &lt;radio v-model=&#34;notify.position&#34; name=&#34;position&#34; value=&#34;top-center&#34;&gt;TOP CENTER&lt;/radio&gt;    &#10;    &lt;radio v-model=&#34;notify.position&#34; name=&#34;position&#34; value=&#34;top-right&#34;&gt;TOP RIGHT&lt;/radio&gt;    &#10;    &lt;radio v-model=&#34;notify.position&#34; name=&#34;position&#34; value=&#34;bottom-left&#34;&gt;BOTTOM LEFT&lt;/radio&gt;&#10;    &lt;radio v-model=&#34;notify.position&#34; name=&#34;position&#34; value=&#34;bottom-center&#34;&gt;BOTTOM CENTER&lt;/radio&gt;    &#10;    &lt;radio v-model=&#34;notify.position&#34; name=&#34;position&#34; value=&#34;bottom-right&#34;&gt;BOTTOM RIGHT&lt;/radio&gt;    &#10;&lt;/div&gt;&#10;&#10;&lt;div class=&#34;form-group&#34;&gt;&#10;    &lt;radio v-model=&#34;notify.method&#34; name=&#34;method&#34; value=&#34;first&#34;&gt;FIRST&lt;/radio&gt;&#10;    &lt;radio v-model=&#34;notify.method&#34; name=&#34;method&#34; value=&#34;last&#34;&gt;LAST&lt;/radio&gt;&#10;&lt;/div&gt;&#10;&#10;&lt;button type=&#34;button&#34; class=&#34;btn btn-primary&#34; @click=&#34;notifyMe&#34;&gt;What time is it&lt;/button&gt;&#10;&lt;button type=&#34;button&#34; class=&#34;btn btn-danger&#34; @click=&#34;bus.$emit('hide-notifications')&#34;&gt;Hide all&lt;/button&gt;         
     </code></pre>
 
     <pre v-highlightjs><code class="javascript">
@@ -269,7 +269,7 @@ notifyMe() {
     <!-- <typeahead v-model="typeahead.secondText" async-src="https://api.github.com/search/users?q=" async-key="items" item-key="login">
         <label class="control-label">Github Users</label>
         <input v-model="typeahead.secondText" data-role="input" class="form-control" type="text" placeholder="Type to search...">
-        <template slot="item" scope="props">
+        <template slot="item" slot-scope="props">
             <li v-for="(item, index) in props.items" :class="{active:props.activeIndex===index}">
                 <a href="javascript:void(0)" @click="props.select(item)">
                     <img width="22px" height="22px" :src="item.avatar_url + '&amp;s=40'">
@@ -294,7 +294,7 @@ notifyMe() {
 </alert>
 
 <uploader url='http://localhost:41097/api/upload-image' v-model="uploader.files" @error="uploaderError" @files-order-changed="uploaderFilesOrderChanged" @max-files-exceeded="uploaderErrorMaxFilesExceeded" :sortable="true" :max-files="5">   
-    <template slot="file" scope="{data}">                        
+    <template slot="file" slot-scope="{data}">                        
         <div class="col-md-3">
             <div class="thumbnail">
                 <!-- glitches with sortable = true -->
@@ -314,7 +314,7 @@ notifyMe() {
 </div>
 
     <pre v-highlightjs><code class="html">
-&lt;alert v-for=&#34;(i, idx) in uploader.alerts&#34; :type=&#34;i.type&#34; :duration=&#34;5000&#34; @close=&#34;uploader.alerts.splice(idx, 1)&#34; :closable=&#34;true&#34; :key=&#34;i.id&#34; :errors=&#34;i.errors&#34;&gt;&#10;    {<span>{</span> i.message <span>}</span>}&#10;&lt;/alert&gt;&#10;&#10;&lt;uploader url='http://localhost:41097/api/upload-image' v-model=&#34;uploader.files&#34; @error=&#34;uploaderError&#34; @files-order-changed=&#34;uploaderFilesOrderChanged&#34; @max-files-exceeded=&#34;uploaderErrorMaxFilesExceeded&#34; :sortable=&#34;true&#34; :max-files=&#34;5&#34;&gt;   &#10;    &lt;template slot=&#34;file&#34; scope=&#34;{data}&#34;&gt;                        &#10;        &lt;div class=&#34;col-md-3&#34;&gt;&#10;            &lt;div class=&#34;thumbnail&#34;&gt;&#10;                &lt;!-- glitches with sortable = true --&gt;&#10;                &lt;!-- &lt;img v-lazy=&#34;data.server + data.file&#34; class=&#34;img-responsive img-rounded&#34; :alt=&#34;data.size&#34;&gt; --&gt;&#10;                &lt;img :src=&#34;data.server + data.file&#34; class=&#34;img-responsive img-rounded&#34; :alt=&#34;data.size&#34;&gt;                                    &#10;            &lt;/div&gt;&#10;            &lt;a href=&#34;#&#34; class=&#34;btn btn-xs btn-danger&#34; @click.prevent=&#34;deleteFile(data.id)&#34;&gt;Delete&lt;/a&gt;                &#10;        &lt;/div&gt;&#10;    &lt;/template&gt;                &#10;&lt;/uploader&gt;        
+&lt;alert v-for=&#34;(i, idx) in uploader.alerts&#34; :type=&#34;i.type&#34; :duration=&#34;5000&#34; @close=&#34;uploader.alerts.splice(idx, 1)&#34; :closable=&#34;true&#34; :key=&#34;i.id&#34; :errors=&#34;i.errors&#34;&gt;&#10;    {<span>{</span> i.message <span>}</span>}&#10;&lt;/alert&gt;&#10;&#10;&lt;uploader url='http://localhost:41097/api/upload-image' v-model=&#34;uploader.files&#34; @error=&#34;uploaderError&#34; @files-order-changed=&#34;uploaderFilesOrderChanged&#34; @max-files-exceeded=&#34;uploaderErrorMaxFilesExceeded&#34; :sortable=&#34;true&#34; :max-files=&#34;5&#34;&gt;   &#10;    &lt;template slot=&#34;file&#34; slot-scope=&#34;{data}&#34;&gt;                        &#10;        &lt;div class=&#34;col-md-3&#34;&gt;&#10;            &lt;div class=&#34;thumbnail&#34;&gt;&#10;                &lt;!-- glitches with sortable = true --&gt;&#10;                &lt;!-- &lt;img v-lazy=&#34;data.server + data.file&#34; class=&#34;img-responsive img-rounded&#34; :alt=&#34;data.size&#34;&gt; --&gt;&#10;                &lt;img :src=&#34;data.server + data.file&#34; class=&#34;img-responsive img-rounded&#34; :alt=&#34;data.size&#34;&gt;                                    &#10;            &lt;/div&gt;&#10;            &lt;a href=&#34;#&#34; class=&#34;btn btn-xs btn-danger&#34; @click.prevent=&#34;deleteFile(data.id)&#34;&gt;Delete&lt;/a&gt;                &#10;        &lt;/div&gt;&#10;    &lt;/template&gt;                &#10;&lt;/uploader&gt;        
     </code></pre>
 
     <pre v-highlightjs><code class="javascript">

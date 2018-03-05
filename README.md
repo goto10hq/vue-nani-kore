@@ -100,7 +100,7 @@ Loading types:
 
 ```html
 <notify type="info" :event-bus="bus">
-    <template slot="content" scope="{data}">
+    <template slot="content" slot-scope="{data}">
         <div>              
         <h4>{{ data.title }}</h4>
         <p>{{ data.text }}</p>                
@@ -149,7 +149,7 @@ value | `string` | `null` | value
 
 ```html
 <uploader url='https://nani.kore/api/upload-image' v-model="[]" @error="uploaderError" @files-order-changed="uploaderFilesOrderChanged" :sortable="true">   
-    <template slot="file" scope="{data}">                        
+    <template slot="file" slot-scope="{data}">                        
         <div class="col-md-3">
             <div class="thumbnail">                
                 <img :src="data.server + data.file" class="img-responsive img-rounded" :alt="data.size">                                    
