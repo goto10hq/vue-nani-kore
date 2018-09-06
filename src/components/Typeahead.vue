@@ -143,7 +143,7 @@
       }
     },
     watch: {
-      value (newValue, oldValue) {        
+      value (newValue, oldValue) {            
         if (typeof newValue === 'string') {
           // direct
           this.inputEl.value = newValue
@@ -160,7 +160,7 @@
       clickOutsideDropdown() {
         let finalItem = '';
         let found = 0;
-
+        
         if (this.items === undefined || this.items == null) {
           return;
         }
@@ -187,8 +187,7 @@
             finalItem = item;
             found++;            
           }
-        }
-        
+        }        
 
         if (found > 1) {
           finalItem = '';
@@ -251,7 +250,7 @@
           }, debounce)
         }
       },
-      inputChanged () {
+      inputChanged () {        
         let value = this.inputEl.value
         this.fetchItems(value, this.debounce)
         this.$emit('input', this.forceSelect ? null : value)
@@ -286,6 +285,7 @@
       selectItem (item) {
         this.$emit('input', item)
         this.openDropdown = false
+        this.$emit('selected', item)
       },
       highlight (item) {               
         let value = this.itemKey ? item[this.itemKey] : item;        

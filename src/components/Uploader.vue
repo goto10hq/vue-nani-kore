@@ -12,7 +12,7 @@
         </div>         
         <div class="row">
             <draggable v-model="files" @change="orderChanged" :options="{ disabled: !sortable }">
-                <div v-for="(f, idx) in files" v-bind:key="idx">
+                <div v-for="f in files" v-bind:key="f.file">
                     <slot name="file" :data="f"></slot>             
                 </div>                                   
             </draggable>
