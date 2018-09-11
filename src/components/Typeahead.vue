@@ -197,7 +197,7 @@
       },
       prepareItems (data) {
         this.items = []
-        this.activeIndex = 0
+        this.activeIndex = 0        
         for (let i = 0, l = data.length; i < l; i++) {
           let item = data[i]
           let key = this.itemKey ? item[this.itemKey] : item          
@@ -215,7 +215,7 @@
             } else {
               index = key.indexOf(this.inputEl.value)
             }
-          }
+          }          
           if (this.matchStart ? index === 0 : index >= 0) {
             this.items.push(item)
           }
@@ -225,25 +225,28 @@
         }
       },
       fetchItems (value, debounce) {
+        
         clearTimeout(this.timeoutID)
-        if (value === '' && !this.openOnEmpty) {
+
+        if (value === '' && !this.openOnEmpty) {        
           this.openDropdown = false
-        } else if (this.data) {
+        } else if (this.data) {          
           this.prepareItems(this.data)
           this.openDropdown = !!this.items.length
-        } else if (this.asyncSrc) {
+        } else if (this.asyncSrc) {          
           this.timeoutID = setTimeout(() => {
             httpUtils.get(this.asyncSrc + value)
               .then(data => {
-                if (this.inputEl.matches(':focus')) {
+                if (this.inputEl.matches(':focus')) {                  
                   //this.prepareItems(this.asyncKey ? data[this.asyncKey] : data)
-                  if (this.asyncKey) {
+                  if (this.asyncKey) {                                
                     this.items = data[this.asyncKey];
                     this.activeIndex = 0;
                     // todo: limit?
-                  } else {
-                    this.prepareItems(data);  
-                  }                  
+                  } else {           
+                    this.items = data;
+                    this.activeIndex = 0;                    
+                  }                                    
                   this.openDropdown = !!this.items.length
                 }
               })
